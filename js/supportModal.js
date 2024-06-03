@@ -1,3 +1,5 @@
+import { connLogo } from "../assets/images.js";
+
 (function () {
   const seedId = () => {
     let id = "id" + Math.random().toString(16).slice(2);
@@ -15,78 +17,63 @@
     </div>
     `;
   const wholeModal = `
-    <div id='supportModal' style='right: -14rem'>
+    <div id='supportModal'>
       <div id='contentWrapper'>
-      <button id="modalDraw">
-        <span> Support Modal </span>
-        <span> </span>
-      </button>
-      <div id="modalContent">
-        jkasdjakdsajkjkaskdjks
-      <div>
-      <div>
+        <div id="modalContent" style="clip-path: circle(100%);">
+          <div id="borderParent" class="dropMargin">
+            <div id="drop">
+              <span> Dropdown </span>
+            </div>
+          </div>
+          <div id="overflowParent" class="customScroll">
+            <div>
+              <input type="file" id="uploadBTN" />
+              <label for="uploadBTN">
+                <span>Upload Screenshot</span>
+              </label>
+            <div>
 
+            <div>
+            yyy 
+            </div>
+
+          </div>
+          <div id="btnArea">
+          </div>
+        </div>
+        <button id="modalBTN">
+          <img id='imgLogo' src=${connLogo} alt="Connectwise Logo" /> 
+        </button>
+      <div>
     </div>
   `;
-  const floatingButton = document.createElement("button");
+
+  const screenShot = `
+    <div id="uploadScreen">
+      <span> Preview </span>
+    </div>
+  `;
 
   document.body.insertAdjacentHTML("beforeend", wholeModal);
   document.body.insertAdjacentHTML("beforeend", modalHtml);
 
-  const modal = document.getElementById(modalId);
-  // const overlay = document.getElementById("overlay");
-  // overlay.addEventListener("click", closeOverlay);
-  // const closeButton = modal.querySelector(".close");
-  // const submitButton = modal.querySelector(`#${supportFormId} button`);
-  const drawer = document.getElementById("supportModal");
-  const drawerBTN = document.getElementById("modalDraw");
+  const modalBtn = document.getElementById("modalBTN");
+  const modalContent = document.getElementById("modalContent");
+  console.log(modalContent);
 
-  drawerBTN.addEventListener("click", () => {
-    let rVal = drawer.style.right;
-    if (rVal === "-14rem") {
-      drawer.style.right = "-1rem";
+  //modalContent.insertAdjacentHTML("beforeend", screenShot);
+
+  modalBtn.addEventListener("click", () => {
+    console.log(modalContent.style.clipPath);
+    const clip = modalContent.style.clipPath;
+    if (clip === "circle(30px at 91.5% 94%)") {
+      modalContent.style.clipPath = "circle(100%)";
+      modalBtn.style.background = "transparent";
     } else {
-      drawer.style.right = "-14rem";
+      modalContent.style.clipPath = "circle(30px at 91.5% 94%)";
+      modalBtn.style.background = "#ebebeb";
     }
   });
 
-  function openModal(buttonElem) {
-    // modal.style.display = "block";
-    // overlay.style.display = "block";
-    buttonElem.style.width = "500px";
-    buttonElem.style.height = "200px";
-  }
-
-  function closeModal() {
-    modal.style.display = "none";
-  }
-
-  function closeOverlay() {
-    // overlay.style.display = "none";
-    floatingButton.style.width = "200px";
-    floatingButton.style.height = "50px";
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    floatingButton.innerText = "Support";
-    floatingButton.id = "support-button";
-    floatingButton.classList.add("floating-button");
-    document.body.appendChild(floatingButton);
-    floatingButton.addEventListener("click", () => {
-      openModal(floatingButton);
-    });
-  });
-
-  closeButton.addEventListener("click", closeModal);
-
-  // Submit form
-  // document
-  //   .getElementById(supportFormId)
-  //   .addEventListener("submit", function (e) {
-  //     e.preventDefault();
-
-  //     // Here you can add logic to handle form submission (e.g., send data to server)
-  //     alert("Form submitted!");
-  //     closeModal();
-  //   });
+  document.addEventListener("DOMContentLoaded", function () {});
 })();
