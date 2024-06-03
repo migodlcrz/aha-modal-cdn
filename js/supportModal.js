@@ -1,4 +1,4 @@
-import { connLogo } from "../assets/images.js";
+import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
 
 (function () {
   const seedId = () => {
@@ -18,61 +18,186 @@ import { connLogo } from "../assets/images.js";
     `;
   const wholeModal = `
     <div id='supportModal'>
-      <div id='contentWrapper'>
-        <div id="modalContent" style="clip-path: circle(100%);">
-          <div id="borderParent" class="dropMargin">
+      
+    </div>
+  `;
+
+  const modalContentElement = `
+  <div id='contentWrapper'>
+    <div id="modalContent" style="clip-path: circle(100%);">
+      <div id="headerWrap">
+        Submit a Ticket
+      </div>
+      <div id="ticketWrap">
+        <div class="borderParent dropMargin">
+          <div id="dropWrap">
             <div id="drop">
-              <span> Dropdown </span>
+              <span class="headerInput"> Incident Type </span>
+              <span> Dropdown Incidents </span>
             </div>
-          </div>
-          <div id="overflowParent" class="customScroll">
-            <div>
-              <input type="file" id="uploadBTN" />
-              <label for="uploadBTN">
-                <span>Upload Screenshot</span>
-              </label>
-            <div>
-
-            <div>
-            yyy 
-            </div>
-
-          </div>
-          <div id="btnArea">
+            <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" />
           </div>
         </div>
-        <button id="modalBTN">
-          <img id='imgLogo' src=${connLogo} alt="Connectwise Logo" /> 
-        </button>
-      <div>
+        <div id="overflowParent" class="customScroll">
+          <div class="borderParent upImg">
+            <input type="file" id="uploadBTN" />
+            <label for="uploadBTN" id="upLbl">
+              <image id="imgPlaceholder" src=${imgPlace} />
+              <span>+ Upload Screenshot</span>
+            </label>
+          </div>
+
+          <div class="borderParent">
+            <div id="descArea">
+              <span>Description</span>
+              <textarea class="customScroll" rows="6" placeholder="Enter details here..."></textarea>
+            </div>
+          </div>
+
+        </div>
+        <div id="btnArea">
+          <button id="submitBtn">
+              <span id="submitArrWrap">
+              <img  id='rArr' src=${rArrow} alt="Arrow"  />
+              </span>
+          </button>
+        </div>
+      </div>
     </div>
+  <div>
+  `;
+
+  const modalBTN = `
+  <button id="modalBTN">
+    <img src=${connLogo} alt="Connectwise Logo" class="fitImg" /> 
+  </button>
   `;
 
   const screenShot = `
-    <div id="uploadScreen">
-      <span> Preview </span>
-    </div>
+    <image src="#" alt="Screenshot" class="fitImg" />
   `;
 
+  const dropOptsElem = `
+    <div id="dropOpts">
+      <span class="headerInput px-10">
+        Select Incident Type
+      </span>
+      <div id="optWrap">
+        <button>Option 1</button>
+        <button>Option 2</button>
+        <button>Option 3</button>
+        <button>Option 4</button>
+      </div>
+    </div>
+  `;
   document.body.insertAdjacentHTML("beforeend", wholeModal);
   document.body.insertAdjacentHTML("beforeend", modalHtml);
 
+  const modal = document.getElementById("supportModal");
+
+  modal.innerHTML = modalBTN;
+
+  // tangal start
+  // modal.style.height = "500px";
+  // modal.style.width = "400px";
+  // modal.style.borderRadius = "10px";
+
+  // setTimeout(() => {
+  //   modal.innerHTML = modalContentElement;
+  // }, 100);
+  // setTimeout(() => {
+  //   const modalContent = document.getElementById("modalContent");
+  //   modalContent.style.opacity = "1";
+
+  //   const uploadFile = document.getElementById("uploadBTN");
+  //   const uploadLabel = document.getElementById("upLbl");
+  //   uploadFile.addEventListener("change", (input) => {
+  //     const [file] = input.target.files;
+  //     console.log(input);
+  //     if (file) {
+  //       const url = URL.createObjectURL(file);
+  //       console.log(url);
+  //       uploadLabel.innerHTML = screenShot;
+  //       const ssIMG = document.getElementById("screenShot");
+  //       ssIMG.src = url;
+  //     }
+  //   });
+
+  //   const dropWrap = document.getElementById("dropWrap");
+
+  //   dropWrap.addEventListener("click", () => {
+  //     let dropOpts = document.getElementById("dropOpts");
+  //     if (dropOpts) {
+  //       dropOpts.style.top = "90%";
+  //       dropOpts.style.opacity = "0";
+  //       setTimeout(() => {
+  //         dropOpts.remove();
+  //       }, 400);
+  //     } else {
+  //       dropWrap.insertAdjacentHTML("beforeend", dropOptsElem);
+  //       dropOpts = document.getElementById("dropOpts");
+  //       setTimeout(() => {
+  //         dropOpts.style.top = "120%";
+  //         dropOpts.style.opacity = "1";
+  //       }, 300);
+  //     }
+  //   });
+  // }, 500);
+  // tangal end
+
   const modalBtn = document.getElementById("modalBTN");
-  const modalContent = document.getElementById("modalContent");
-  console.log(modalContent);
 
   //modalContent.insertAdjacentHTML("beforeend", screenShot);
 
   modalBtn.addEventListener("click", () => {
-    console.log(modalContent.style.clipPath);
-    const clip = modalContent.style.clipPath;
-    if (clip === "circle(30px at 91.5% 94%)") {
-      modalContent.style.clipPath = "circle(100%)";
-      modalBtn.style.background = "transparent";
-    } else {
-      modalContent.style.clipPath = "circle(30px at 91.5% 94%)";
-      modalBtn.style.background = "#ebebeb";
-    }
+    modal.style.height = "500px";
+    modal.style.width = "400px";
+    modal.style.borderRadius = "10px";
+    modalBtn.style.opacity = "0";
+    setTimeout(() => {
+      modal.innerHTML = modalContentElement;
+    }, 100);
+    setTimeout(() => {
+      const modalContent = document.getElementById("modalContent");
+      modalContent.style.opacity = "1";
+
+      const uploadFile = document.getElementById("uploadBTN");
+      const uploadLabel = document.getElementById("upLbl");
+      uploadFile.addEventListener("change", (input) => {
+        const [file] = input.target.files;
+        console.log(input);
+        if (file) {
+          const url = URL.createObjectURL(file);
+          console.log(url);
+          uploadLabel.innerHTML = screenShot;
+          const ssIMG = document.getElementById("screenShot");
+          ssIMG.src = url;
+        }
+      });
+
+      const dropWrap = document.getElementById("dropWrap");
+
+      dropWrap.addEventListener("click", () => {
+        let dropOpts = document.getElementById("dropOpts");
+        if (dropOpts) {
+          // close them
+          dropOpts.style.top = "90%";
+          dropOpts.style.opacity = "0";
+          setTimeout(() => {
+            dropOpts.remove();
+          }, 400);
+        } else {
+          // open the options
+          dropWrap.insertAdjacentHTML("beforeend", dropOptsElem);
+          dropOpts = document.getElementById("dropOpts");
+          setTimeout(() => {
+            dropOpts.style.top = "120%";
+            dropOpts.style.opacity = "1";
+          }, 200);
+        }
+      });
+    }, 500);
+    modal.innerHTML = modalContentElement;
   });
 
   document.addEventListener("DOMContentLoaded", function () {});
