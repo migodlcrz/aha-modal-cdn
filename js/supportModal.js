@@ -38,22 +38,13 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
           </div>
 
           <div id="overflowParent" class="customScroll">
-            <div id="boardWrap">
-              <div class="borderParent radioOpt">
-                <input type="radio" name="boardType" id="sbddm" value="SB DDM" checked />
-                <label for="sbddm">
-                  <div class="innerBoard">
-                    SB DDM
-                  </div>
-                </label>
-              </div>
-              <div class="borderParent radioOpt">
-                <input type="radio" name="boardType" id="otherOpt" value="Other" />
-                <label for="otherOpt"> 
-                  <div class="innerBoard">
-                      OTHER
-                  </div>
-                </label>
+            <div class="borderParent">
+              <div id="dropWrap">
+                <div id="drop">
+                  <span class="headerInput"> Submission Type :) </span>
+                  <span id="submissionType"> Accidental Submission/Other </span>
+                </div>
+                <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" />
               </div>
             </div>
             

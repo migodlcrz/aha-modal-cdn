@@ -251,7 +251,7 @@ button.botBtn {
 
 button.botBtn#cancelBtn {
   border-radius: 0 0 0 10px;
-  padding-left: 30px;
+  padding: 10px 30px 10px 0;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -260,26 +260,26 @@ button.botBtn#cancelBtn {
 
 button.botBtn#submitBtn {
   border-radius: 0 0 10px 0;
-  padding-right: 30px;
+  padding: 10px 0 10px 30px;
   display: flex;
   align-items: center;
   justify-content: end;
   gap: 10px;
 }
 
-#submitBtn:hover {
+button.botBtn#submitBtn:hover {
   background-color: #719fe8;
 }
 
-#submitBtn:active {
+button.botBtn#submitBtn:active {
   background-color: #184997;
 }
 
-#cancelBtn:hover {
+button.botBtn#cancelBtn:hover {
   background-color: #f36974;
 }
 
-#cancelBtn:active {
+button.botBtn#cancelBtn:active {
   background-color: #b52d38;
 }
 
@@ -371,6 +371,7 @@ input#subName,
 input#descArea,
 input#currentURL {
   padding: 0px;
+  outline: none;
 }
 
 /* Texts */
