@@ -369,7 +369,8 @@ input[type="radio"]:checked + label .innerBoard,
 
 input#subName,
 input#descArea,
-input#currentURL {
+input#currentURL,
+textarea#descInp {
   padding: 0px;
   outline: none;
 }
