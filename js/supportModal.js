@@ -28,44 +28,63 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
       <div id="headerWrap">
         Submit a Ticket
       </div>
-      <div id="ticketWrap">
-        <div class="borderParent dropMargin">
-          <div id="dropWrap">
-            <div id="drop">
-              <span class="headerInput"> Incident Type </span>
-              <span> Dropdown Incidents </span>
-            </div>
-            <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" />
-          </div>
-        </div>
-        <div id="overflowParent" class="customScroll">
-          <div class="borderParent upImg">
-            <input type="file" id="uploadBTN" />
-            <label for="uploadBTN" id="upLbl">
-              <image id="imgPlaceholder" src=${imgPlace} />
-              <span>+ Upload Screenshot</span>
-            </label>
-          </div>
-
-          <div class="borderParent">
-            <div id="descArea">
-              <span>Description</span>
-              <textarea class="customScroll" rows="6" placeholder="Enter details here..."></textarea>
+      <form id="formElem">
+        <div id="ticketWrap">
+          <div class="borderParent dropMargin">
+            <div id="dropWrap">
+              <div id="drop">
+                <span class="headerInput"> Incident Type </span>
+                <span> Dropdown Incidents </span>
+              </div>
+              <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" />
             </div>
           </div>
+          <div id="overflowParent" class="customScroll">
+            <div class="borderParent upImg">
+              <input type="file" id="uploadBTN" />
+              <label for="uploadBTN" id="upLbl">
+                <image id="imgPlaceholder" src=${imgPlace} />
+                <span>+ Upload Screenshot</span>
+              </label>
+            </div>
+
+            <div class="borderParent">
+              <div id="descArea">
+                <span>Description</span>
+                <textarea class="customScroll" rows="6" placeholder="Enter details here..."></textarea>
+              </div>
+            </div>
+
+          </div>
 
         </div>
-        <div id="btnArea">
-          <button id="submitBtn">
-              <span id="submitArrWrap">
-              <img  id='rArr' src=${rArrow} alt="Arrow"  />
-              </span>
+
+        <div id="botBtnWrap">
+          <button class="botBtn" id="cancelBtn" type="button"> Cancel </button>
+          <button class="botBtn" id="submitBtn2" type="submit"> 
+          <span>Submit</span>
+          <img  id='rArr' src=${rArrow} alt="Arrow"  /> 
           </button>
-        </div>
-      </div>
+        <div>
+      </form>
     </div>
   <div>
   `;
+
+  //   <button id="submitBtn">
+  //   <span id="submitArrWrap">
+  //   <img  id='rArr' src=${rArrow} alt="Arrow"  />
+  //   </span>
+  // </button>
+
+  //   <div id="btnArea">
+  //   <button class="endBtn">
+  //     Button 1
+  //   </button>
+  //   <button class="endBtn">
+  //     Button 2
+  //   </button>
+  // </div>
 
   const modalBTN = `
   <button id="modalBTN">
@@ -74,7 +93,7 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
   `;
 
   const screenShot = `
-    <image src="#" alt="Screenshot" class="fitImg" />
+    <image src="#" alt="Screenshot" class="fitImg" id="screenShot" />
   `;
 
   const dropOptsElem = `
@@ -113,10 +132,8 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
   //   const uploadLabel = document.getElementById("upLbl");
   //   uploadFile.addEventListener("change", (input) => {
   //     const [file] = input.target.files;
-  //     console.log(input);
   //     if (file) {
   //       const url = URL.createObjectURL(file);
-  //       console.log(url);
   //       uploadLabel.innerHTML = screenShot;
   //       const ssIMG = document.getElementById("screenShot");
   //       ssIMG.src = url;
@@ -142,14 +159,29 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
   //       }, 300);
   //     }
   //   });
+
+  //   const cancelBtn = document.getElementById("cancelBtn");
+
+  //   cancelBtn.addEventListener("click", () => {
+  //     const modalContent = document.getElementById("modalContent");
+  //     modalContent.style.opacity = "0";
+  //     setTimeout(() => {
+  //       modal.style.width = "65px";
+  //       modal.style.height = "65px";
+  //       modal.style.borderRadius = "100%";
+  //     }, 350);
+  //     setTimeout(() => {
+  //       modal.innerHTML = modalBTN;
+  //     }, 900);
+  //   });
   // }, 500);
   // tangal end
 
   const modalBtn = document.getElementById("modalBTN");
 
-  //modalContent.insertAdjacentHTML("beforeend", screenShot);
+  // modalContent.insertAdjacentHTML("beforeend", screenShot);
 
-  modalBtn.addEventListener("click", () => {
+  const openModal = () => {
     modal.style.height = "500px";
     modal.style.width = "400px";
     modal.style.borderRadius = "10px";
@@ -157,6 +189,8 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
     setTimeout(() => {
       modal.innerHTML = modalContentElement;
     }, 100);
+
+    // Upload Screenshot
     setTimeout(() => {
       const modalContent = document.getElementById("modalContent");
       modalContent.style.opacity = "1";
@@ -175,8 +209,8 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
         }
       });
 
+      // Dropdown functions
       const dropWrap = document.getElementById("dropWrap");
-
       dropWrap.addEventListener("click", () => {
         let dropOpts = document.getElementById("dropOpts");
         if (dropOpts) {
@@ -197,8 +231,35 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
         }
       });
     }, 500);
+
+    // For Cancel Button
+    setTimeout(() => {
+      const cancelBtn = document.getElementById("cancelBtn");
+      console.log(cancelBtn);
+
+      cancelBtn.addEventListener("click", () => {
+        const modalContent = document.getElementById("modalContent");
+        modalContent.style.opacity = "0";
+        setTimeout(() => {
+          modal.style.width = "65px";
+          modal.style.height = "65px";
+          modal.style.borderRadius = "100%";
+        }, 250);
+        setTimeout(() => {
+          // modal.innerHTML = modalBTN;
+          // const modalBTN = document.getElementById("modalBTN");
+          console.log(modalBTN);
+          modal.innerHTML = modalBTN;
+          const openBtn = document.getElementById("modalBTN");
+          openBtn.addEventListener("click", openModal);
+        }, 800);
+      });
+    }, 600);
+
     modal.innerHTML = modalContentElement;
-  });
+  };
+
+  modalBtn.addEventListener("click", openModal);
 
   document.addEventListener("DOMContentLoaded", function () {});
 })();

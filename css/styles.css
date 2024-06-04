@@ -44,7 +44,7 @@ body {
   flex-direction: column;
   background-color: #ffffff;
   font-size: 20px;
-  transition: all 0.7s ease;
+  transition: all 0.5s ease;
   border-radius: 20px;
   gap: 10px;
   opacity: 0;
@@ -75,8 +75,11 @@ body {
 }
 
 #btnArea {
+  display: flex;
   width: 100%;
-  margin: 5px;
+  gap: 10px;
+  justify-content: space-between;
+  margin-top: 5px;
 }
 
 .btnWrap {
@@ -133,6 +136,20 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 5px;
+}
+
+#botBtnWrap {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 100%;
+}
+
+#formElem {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 10px;
 }
 
 /* Dropdown */
@@ -212,6 +229,30 @@ body {
   background-color: #a1c3fa;
   color: #fff;
   border-left: 2px solid #184997;
+}
+
+.botBtn {
+  flex-grow: 1;
+  border: none;
+  background-color: #5d89d0;
+  color: white;
+}
+
+#cancelBtn {
+  border-radius: 0 0 0 10px;
+  text-align: start;
+  padding-left: 30px;
+  /* background-color: #de505c; */
+}
+
+#submitBtn2 {
+  border-radius: 0 0 10px 0;
+  /* background-color: #719fe8; */
+  padding-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
 }
 
 /* Images */
