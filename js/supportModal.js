@@ -30,7 +30,7 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
           <div class="borderParent dropMargin">
             <div id="dropWrap">
               <div id="drop">
-                <span class="headerInput"> Submission Type </span>
+                <span class="headerInput"> Submission Type :) </span>
                 <span id="submissionType"> Accidental Submission/Other </span>
               </div>
               <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" />
