@@ -223,7 +223,6 @@ nah : f10000
 
 .doubleDiv {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
 }
