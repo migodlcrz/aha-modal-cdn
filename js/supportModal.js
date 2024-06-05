@@ -1,10 +1,28 @@
-import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
+import {
+  blkArr,
+  check,
+  close,
+  connLogo,
+  imgPlace,
+  rArrow,
+} from "../assets/images.js";
 
-(function () {
+(async function () {
   const seedId = () => {
     let id = "id" + Math.random().toString(16).slice(2);
     return id;
   };
+
+  // Get User IP
+  const resss = await fetch("https://api.ipify.org?format=json").then(
+    async (resp) => await resp.json()
+  );
+  const ip = resss.ip;
+  // Get User Location
+  const locRes = await fetch(`http://www.geoplugin.net/json.gp?ip=${ip}`).then(
+    async (res) => await res.json()
+  );
+  console.log(locRes);
 
   const modalId = `support-modal-${seedId()}`;
 
@@ -30,50 +48,75 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
           <div class="borderParent dropMargin">
             <div id="dropWrap">
               <div id="drop">
-                <span class="headerInput"> Submission Type :) </span>
-                <span id="submissionType"> Accidental Submission/Other </span>
+                <span class="headerInput helv">Submission Type</span>
+                <span id="submissionType" class="helv">Accidental Submission/Other</span>
               </div>
               <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" />
             </div>
           </div>
 
           <div id="overflowParent" class="customScroll">
-            <div class="borderParent">
-              <div id="dropWrap">
-                <div id="drop">
-                  <span class="headerInput"> Submission Type :) </span>
-                  <span id="submissionType"> Accidental Submission/Other </span>
-                </div>
-                <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" />
+            <div id="boardWrap">
+              <div class="borderParent radioOpt">
+                <input type="radio" name="boardType" id="sbddm" value="SB DDM" checked />
+                <label for="sbddm">
+                  <div class="innerBoard helv">
+                    SB DDM
+                  </div>
+                </label>
+              </div>
+              <div class="borderParent radioOpt">
+                <input type="radio" name="boardType" id="otherOpt" value="Other" />
+                <label for="otherOpt"> 
+                  <div class="innerBoard helv">
+                      OTHER
+                  </div>
+                </label>
               </div>
             </div>
             
             <div class="borderParent">
               <div class="inpWrap">
-                <span class="headerInput"> Submission Name </span>
-                <input type="text" name="subName" id="subName" class="inputBox" placeholder="Type here..." autocomplete="off" />
+                <span class="headerInput helv"> Submission Name </span>
+                <input type="text" name="subName" id="subName" class="inputBox helv" placeholder="Type here..." autocomplete="off" />
               </div>
             </div>
 
             <div class="borderParent upImg">
-              <input type="file" id="uploadBTN" />
+              <input type="file" id="uploadBTN" name="uploadBTN" />
               <label for="uploadBTN" id="upLbl">
                 <image id="imgPlaceholder" src=${imgPlace} />
-                <span>+ Upload Screenshot</span>
+                <span class="helv">+ Upload Screenshot</span>
               </label>
+            </div>
+
+            <div class="doubleDiv">
+              <div class="borderParent" style="width:48%">
+                <div class="inpWrap">
+                  <span class="headerInput helv"> IP Address </span>
+                  <input type="text" name="IPAdd" id="IPAdd" class="inputBox helv" value=${ip} readonly />
+                </div>
+              </div>
+
+              <div class="borderParent" style="width:48%">
+                <div class="inpWrap">
+                  <span class="headerInput helv"> Location </span>
+                  <input type="text" name="Locate" id="Locate" class="inputBox helv" value=${locRes.geoplugin_countryName} readonly />
+                </div>
+              </div>
             </div>
 
             <div class="borderParent">
               <div id="descArea">
-                <span class="headerInput">Description</span>
-                <textarea name="description" class="customScroll" rows="6" placeholder="Enter details here..."></textarea>
+                <span class="headerInput helv">Description</span>
+                <textarea name="descInp" class="customScroll helv" rows="6" placeholder="Enter details here..." id="descInp"></textarea>
               </div>
             </div>
 
             <div class="borderParent">
               <div class="inpWrap">
-                <span class="headerInput"> Current URL </span>
-                <input type="text" name="currentURL" id="currentURL" class="inputBox" value=${window.location.href} readonly placeholder="Type here..." autocomplete="off" />
+                <span class="headerInput helv"> Current URL </span>
+                <input type="text" name="currentURL" id="currentURL" class="inputBox helv" value=${window.location.href} readonly />
               </div>
             </div>
           </div>
@@ -102,10 +145,10 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
   `;
   const dropOptsElem = `
     <div id="dropOpts">
-      <span class="headerInput px-10">
+      <span class="headerInput px-10 helv">
         Select Submission Type
       </span>
-      <div id="optWrap">
+      <div id="optWrap" class="helv">
         <button type="button">Accidental Submission/Other</button>
         <button type="button">Change Request</button>
         <button type="button">Incident</button>
@@ -113,6 +156,28 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
         <button type="button">Service Request</button>
       </div>
     </div>
+  `;
+  const succToastMSG = `
+  <div class="cdnToastMSG" id="succToasMSG">
+    <div id="toastMSGWrap">
+      <img src=${check} alt="check" class="toastMSGIcon" />
+      <div id="toastTexts945">
+        <span class="toastHeader34 frank">SUCCESS</span>
+        <span class="toastCont495 helv">Ticket was successfully submitted.</span>
+      </div>
+    </div>
+  </div>
+  `;
+  const errToastMSG = `
+  <div class="cdnToastMSG" id="errToasMSG">
+    <div id="toastMSGWrap">
+      <img src=${close} alt="close" class="toastMSGIcon" />
+      <div id="toastTexts945">
+        <span class="toastHeader34 frank">ERROR</span>
+        <span class="toastCont495 helv">Please Fill Out Incomplete Fields</span>
+      </div>
+    </div>
+  </div>
   `;
   document.body.insertAdjacentHTML("beforeend", wholeModal);
   document.body.insertAdjacentHTML("beforeend", modalHtml);
@@ -216,54 +281,100 @@ import { blkArr, connLogo, imgPlace, rArrow } from "../assets/images.js";
         const data = new FormData(ev.target);
         const subType = document.getElementById("submissionType");
 
-        const [boardType, subName, descr, currUrl] = [...data.entries()];
-        // console.log(boardType, subName, descr, currUrl);
-        console.log("pumasok");
-        const createRes = await fetch(
-          "https://cdn-connectwise.srilan-catalinio.workers.dev/createTicket",
-          {
-            method: "POST",
-            headers: {
-              Authorization:
-                "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-              clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-            },
-            body: JSON.stringify({
-              summary: subName[1].trim(),
-              board: {
-                name: boardType[1].trim(),
-              },
-              company: {
-                id: 19299,
-              },
-              type: {
-                name: subType.textContent.trim(),
-              },
-            }),
-          }
-        );
-        const id = await createRes.json();
-        console.log(id);
+        const [boardType, subName, ssImg, ipAdd, locate, descr, currUrl] = [
+          ...data.entries(),
+        ];
+        console.log([...data.entries()]);
+        console.log(boardType, subName, descr, currUrl, subType.textContent);
 
-        const putRes = await fetch(
-          "https://cdn-connectwise.srilan-catalinio.workers.dev/putDetails",
-          {
-            method: "POST",
-            headers: {
-              Authorization:
-                "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-              clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-            },
-            body: JSON.stringify({
-              id: id,
-              text: `Current URL: ${currUrl[1]} \nDescription:${descr[1]}`,
-              detailDescriptionFlag: true,
-              member: { id: 157 },
-            }),
-          }
-        );
-        const jason = await putRes.json();
-        console.log(jason);
+        const [nameBool, descBool] = [subName[1] === "", descr[1] === ""];
+
+        // IF incomplete fields
+        if (nameBool || descBool) {
+          console.log("ERROR");
+          const modalContent = document.getElementById("modalContent");
+          modalContent.insertAdjacentHTML("beforeend", errToastMSG);
+
+          setTimeout(() => {
+            const toastMSG = document.getElementById("errToasMSG");
+            toastMSG.style.bottom = "103%";
+            toastMSG.style.opacity = "1";
+
+            setTimeout(() => {
+              toastMSG.style.bottom = "95%";
+              toastMSG.style.opacity = "0";
+            }, 3500);
+            setTimeout(() => {
+              toastMSG.remove();
+            }, 4000);
+          }, 200);
+          return;
+        }
+
+        // Success Toast Message
+        const modalContent = document.getElementById("modalContent");
+        modalContent.insertAdjacentHTML("beforeend", succToastMSG);
+
+        setTimeout(() => {
+          const toastMSG = document.getElementById("succToasMSG");
+          toastMSG.style.bottom = "103%";
+          toastMSG.style.opacity = "1";
+
+          setTimeout(() => {
+            toastMSG.style.bottom = "95%";
+            toastMSG.style.opacity = "0";
+          }, 3500);
+          setTimeout(() => {
+            toastMSG.remove();
+          }, 4000);
+        }, 200);
+
+        console.log("pumasok");
+        // const createRes = await fetch(
+        //   "https://cdn-connectwise.srilan-catalinio.workers.dev/createTicket",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       Authorization:
+        //         "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+        //       clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+        //     },
+        //     body: JSON.stringify({
+        //       summary: subName[1].trim(),
+        //       board: {
+        //         name: boardType[1].trim(),
+        //       },
+        //       company: {
+        //         id: 19299,
+        //       },
+        //       type: {
+        //         name: subType.textContent.trim(),
+        //       },
+        //     }),
+        //   }
+        // );
+        // const id = await createRes.json();
+        // console.log(id);
+
+        // const putRes = await fetch(
+        //   "https://cdn-connectwise.srilan-catalinio.workers.dev/putDetails",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       Authorization:
+        //         "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+        //       clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+        //     },
+        //     body: JSON.stringify({
+        //       id: id,
+        //       text: `Current URL: ${currUrl[1]} \nDescription:${descr[1]}`,
+        //       detailDescriptionFlag: true,
+        //       member: { id: 157 },
+        //     }),
+        //   }
+        // );
+        // const jason = await putRes.json();
+        // console.log(jason);
       });
     }, 400);
 
