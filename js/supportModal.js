@@ -260,7 +260,7 @@ import {
           modal.style.width = "65px";
           modal.style.height = "65px";
           modal.style.borderRadius = "100%";
-        }, 250);
+        }, 350);
         setTimeout(() => {
           // modal.innerHTML = modalBTN;
           // const modalBTN = document.getElementById("modalBTN");
@@ -268,7 +268,7 @@ import {
           modal.innerHTML = modalBTN;
           const openBtn = document.getElementById("modalBTN");
           openBtn.addEventListener("click", openModal);
-        }, 700);
+        }, 800);
       });
     }, 400);
 
