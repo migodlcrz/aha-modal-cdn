@@ -79,7 +79,7 @@ import {
             </div>
 
             <div class="borderParent upImg" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;border: 3px dashed #a1c1f3;">
-              <input type="file" id="uploadBTN" name="uploadBTN" style="position: absolute;width: 0.1px;height: 0.1px;opacity: 0;z-index: 0;overflow: hidden;" />
+              <input type="file" accept="image/png, image/jpeg" id="uploadBTN" name="uploadBTN" style="position: absolute;width: 0.1px;height: 0.1px;opacity: 0;z-index: 0;overflow: hidden;" />
               <label for="uploadBTN" id="upLbl" style="height: 150px;background: #eaf2ff;border-radius: 5px;display: flex;align-items: center;justify-content: center;cursor: pointer;color: #92abd3;display: flex;flex-direction: column;gap: 15px;font-size: 14px;">
                 <image id="imgPlaceholder" src=${imgPlace} style="width: 40px;height: 40px;" />
                 <span class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>+ Upload Screenshot</span>
@@ -136,8 +136,11 @@ import {
     <img src=${connLogo} alt="Connectwise Logo" class="fitImg" style="height: 100%;width: auto;" /> 
   </button>
   `;
-  const screenShot = `
-    <image src="#" alt="Screenshot" class="fitImg" id="screenShot" style="height: 100%;width: auto;" />
+  const retSSElem = (ssURI) =>
+    `<image src=${ssURI} alt="Screenshot" class="fitImg" id="screenShot" style="height: 100%;width: auto;" />`;
+  const ssPlaceholder = `
+    <image id="imgPlaceholder" src=${imgPlace} style="width: 40px;height: 40px;" />
+    <span class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>+ Upload Screenshot</span>
   `;
   const dropOptsElem = `
     <div id="dropOpts" style="position: absolute;top: 90%;opacity: 0;width: 100%;background-color: #fff;left: 0;padding: 10px 0;border: 1px solid #d4d4d4;border-radius: 5px;transition: all 0.3s ease-in-out; z-index:1199;">
@@ -145,11 +148,11 @@ import {
         Select Submission Type
       </span>
       <div id="optWrap" class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;display: flex;flex-direction: column;margin-top: 5px;'>
-        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;5px;">Accidental Submission/Other</button>
-        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;5px;">Change Request</button>
-        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;5px;">Incident</button>
-        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;5px;">Must Change</button>
-        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;5px;">Service Request</button>
+        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">Accidental Submission/Other</button>
+        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">Change Request</button>
+        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">Incident</button>
+        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">Must Change</button>
+        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">Service Request</button>
       </div>
     </div>
   `;
@@ -184,7 +187,35 @@ import {
   const modalBtn = document.getElementById("modalBTN");
 
   // Function for opening the modal
-  const openModal = () => {
+  const openModal = async () => {
+    // Screenshot
+    let ss64 = "";
+    const stream = await navigator.mediaDevices.getDisplayMedia({
+      preferCurrentTab: true,
+    });
+
+    const vid = document.createElement("video");
+
+    vid.addEventListener("loadedmetadata", () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.canvas.width = vid.videoWidth;
+      ctx.canvas.height = vid.videoHeight;
+      ctx.drawImage(vid, 0, 0, vid.videoWidth, vid.videoHeight);
+      // Stop Video once 1 frame of screenshot is taken
+      stream.getVideoTracks()[0].stop();
+      // Put to Sceenshot file
+      ss64 = canvas.toDataURL("image/png");
+      // let a = document.createElement("a");
+      // a.download = "screen.png";
+      // a.href = canvas.toDataURL("image/png");
+      // console.log(canvas.toDataURL("image/png"));
+    });
+
+    vid.srcObject = stream;
+    vid.play();
+
+    // Opening of Ticket Creation
     modal.style.height = "505px";
     modal.style.width = "400px";
     modal.style.borderRadius = "10px";
@@ -200,15 +231,15 @@ import {
 
       const uploadFile = document.getElementById("uploadBTN");
       const uploadLabel = document.getElementById("upLbl");
+      uploadLabel.innerHTML = retSSElem(ss64);
+
       uploadFile.addEventListener("change", (input) => {
         const [file] = input.target.files;
-        console.log(input);
+        console.log(input.target.files, "File", file);
         if (file) {
           const url = URL.createObjectURL(file);
           console.log(url);
-          uploadLabel.innerHTML = screenShot;
-          const ssIMG = document.getElementById("screenShot");
-          ssIMG.src = url;
+          uploadLabel.innerHTML = retSSElem(url);
         }
       });
 
@@ -235,6 +266,16 @@ import {
           const subType = document.getElementById("submissionType");
 
           for (let btn of options) {
+            btn.addEventListener("mouseover", () => {
+              btn.style.backgroundColor = "#a1c3fa";
+              btn.style.color = "#fff";
+              btn.style.borderLeft = "2px solid #184997";
+            });
+            btn.addEventListener("mouseout", () => {
+              btn.style.backgroundColor = "transparent";
+              btn.style.color = "#000";
+              btn.style.borderLeft = "2px solid transparent";
+            });
             btn.addEventListener("click", () => {
               subType.textContent = btn.textContent;
             });
@@ -243,10 +284,18 @@ import {
       });
     }, 300);
 
-    // For Cancel Button
+    // Cancel, Submit, Radio Button Effects
     setTimeout(() => {
+      // For Cancel Button
       const cancelBtn = document.getElementById("cancelBtn");
       console.log(cancelBtn);
+
+      cancelBtn.addEventListener("mouseover", () => {
+        cancelBtn.style.backgroundColor = "#f36974";
+      });
+      cancelBtn.addEventListener("mouseout", () => {
+        cancelBtn.style.backgroundColor = "#5d89d0";
+      });
 
       cancelBtn.addEventListener("click", () => {
         const modalContent = document.getElementById("modalContent");
@@ -257,15 +306,49 @@ import {
           modal.style.borderRadius = "100%";
         }, 350);
         setTimeout(() => {
-          // modal.innerHTML = modalBTN;
-          // const modalBTN = document.getElementById("modalBTN");
           console.log(modalBTN);
           modal.innerHTML = modalBTN;
           const openBtn = document.getElementById("modalBTN");
           openBtn.addEventListener("click", openModal);
         }, 800);
       });
-    }, 400);
+
+      // Submit Button Hover Effect
+      const submitBtn = document.getElementById("submitBtn");
+      console.log(cancelBtn);
+
+      submitBtn.addEventListener("mouseover", () => {
+        submitBtn.style.backgroundColor = "#719fe8";
+      });
+      submitBtn.addEventListener("mouseout", () => {
+        submitBtn.style.backgroundColor = "#5d89d0";
+      });
+
+      // Radio Effects
+      const radLabel = document.querySelector(
+        "input[type='radio']:checked + label .innerBoard"
+      );
+      radLabel.style.backgroundColor = "#f0616c";
+      radLabel.style.color = "#fff";
+      // Changing of Color on selected Radio BTN
+      const radios = document.querySelectorAll("input[type='radio']");
+      for (let rad of radios) {
+        rad.addEventListener("click", () => {
+          const allLbl = document.querySelectorAll(
+            "input[type='radio'] + label .innerBoard"
+          );
+          for (let lbl of allLbl) {
+            lbl.style.backgroundColor = "#eaf2ff";
+            lbl.style.color = "#7e7e7e";
+          }
+          const radLabel = document.querySelectorAll(
+            "input[type='radio']:checked + label .innerBoard"
+          );
+          radLabel[0].style.backgroundColor = "#f0616c";
+          radLabel[0].style.color = "#fff";
+        });
+      }
+    }, 300);
 
     // Submitting Form
     setTimeout(() => {
@@ -286,6 +369,21 @@ import {
 
         // IF incomplete fields
         if (nameBool || descBool) {
+          // Turn Images to base64
+          console.log(ssImg[1].type);
+          if (ssImg[1].type === "application/octet-stream") {
+            console.log("DataURI:", ss64);
+          } else {
+            const FR = new FileReader();
+
+            FR.addEventListener("load", () => {
+              console.log(FR.result);
+            });
+
+            FR.readAsDataURL(ssImg[1]);
+          }
+
+          // Add Error toast message
           console.log("ERROR");
           const modalContent = document.getElementById("modalContent");
           modalContent.insertAdjacentHTML("beforeend", errToastMSG);
