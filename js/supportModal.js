@@ -39,7 +39,7 @@ import {
       <div id="headerWrap" style="background-color: #184997;border-radius: 10px 10px 0 0;color: #fff;padding: 13px 15px;font-family: Georgia;font-size: 18px;">
         Submit a Ticket
       </div>
-      <form id="formElem" style="display: flex;flex-direction: column;flex-grow: 1;gap: 10px;">
+      <form id="formElem" style="display: flex;flex-direction: column;flex-grow: 1;gap: 10px;margin:0px;padding:0px;">
         <div id="ticketWrap" style="padding: 5px 20px 5px 20px;display: flex;flex-direction: column;gap: 10px;">
           <div class="borderParent dropMargin" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
             <div id="dropWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 15px;position: relative;">
@@ -51,12 +51,12 @@ import {
             </div>
           </div>
 
-          <div id="overflowParent" class="customScroll" style="width: 100%;flex-grow: 1;display: flex;padding-right: 8px;flex-direction: column;overflow-y: scroll;gap: 10px;height: 315px;">
-            <div id="boardWrap" style="display: flex;width: 100%;gap: 10px;">
-              <div class="borderParent radioOpt" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;flex-grow: 1;">
+          <div id="overflowParent" class="customScroll" style="width: 100%;flex-grow: 1;display: flex;padding-right: 8px;flex-direction: column;overflow-y: scroll;gap: 10px;height: 315px;margin:0px;">
+            <div id="boardWrap" style="display: flex;width: 100%;gap: 10px;margin:0px;">
+              <div class="borderParent radioOpt" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;flex-grow: 1;margin:0px;">
                 <input type="radio" name="boardType" id="sbddm" value="SB DDM" checked style="opacity: 0;position: absolute;" />
                 <label for="sbddm" style='display: flex;align-items: center;justify-content: center;width: 100%;'>
-                  <div class="innerBoard helv" style='padding: 10px 0;text-align: center;width: 100%;background-color: #eaf2ff;border-radius: 5px;color: #7e7e7e;font-size: 14px;transition: all 0.3s ease-in-out; font-family: Helvetica, "Times New Roman", Times, serif;'>
+                  <div class="innerBoard helv" style='padding: 10px 0;text-align: center;width: 100%;background-color: #eaf2ff;border-radius: 5px;color: #7e7e7e;font-size: 14px;transition: all 0.3s ease-in-out; font-family: Helvetica, "Times New Roman", Times, serif;margin:0px'>
                     SB DDM
                   </div>
                 </label>
@@ -64,7 +64,7 @@ import {
               <div class="borderParent radioOpt" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;flex-grow: 1;">
                 <input type="radio" name="boardType" id="otherOpt" value="Other" style="opacity: 0;position: absolute;" />
                 <label for="otherOpt" style="display: flex;align-items: center;justify-content: center;width: 100%;"> 
-                  <div class="innerBoard helv" style='padding: 10px 0;text-align: center;width: 100%;background-color: #eaf2ff;border-radius: 5px;color: #7e7e7e;font-size: 14px;transition: all 0.3s ease-in-out; font-family: Helvetica, "Times New Roman", Times, serif;'>
+                  <div class="innerBoard helv" style='padding: 10px 0;text-align: center;width: 100%;background-color: #eaf2ff;border-radius: 5px;color: #7e7e7e;font-size: 14px;transition: all 0.3s ease-in-out; font-family: Helvetica, "Times New Roman", Times, serif;margin:0px'>
                       OTHER
                   </div>
                 </label>
@@ -72,47 +72,47 @@ import {
             </div>
             
             <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
-              <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;">
-                <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'> Submission Name </span>
-                <input type="text" name="subName" id="subName" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;font-size: 15px;padding: 0px;' placeholder="Type here..." autocomplete="off" />
+              <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
+                <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Submission Name </span>
+                <input type="text" name="subName" id="subName" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;font-size: 15px;padding: 0px;margin:0px;' placeholder="Type here..." autocomplete="off" />
               </div>
             </div>
 
-            <div class="borderParent upImg" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;border: 3px dashed #a1c1f3;">
+            <div class="borderParent upImg" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;border: 3px dashed #a1c1f3;margin:0px;">
               <input type="file" accept="image/png, image/jpeg" id="uploadBTN" name="uploadBTN" style="position: absolute;width: 0.1px;height: 0.1px;opacity: 0;z-index: 0;overflow: hidden;" />
-              <label for="uploadBTN" id="upLbl" style="height: 150px;background: #eaf2ff;border-radius: 5px;display: flex;align-items: center;justify-content: center;cursor: pointer;color: #92abd3;display: flex;flex-direction: column;gap: 15px;font-size: 14px;">
+              <label for="uploadBTN" id="upLbl" style="height: 150px;background: #eaf2ff;border-radius: 5px;display: flex;align-items: center;justify-content: center;cursor: pointer;color: #92abd3;display: flex;flex-direction: column;gap: 15px;font-size: 14px;margin:0px;">
                 <image id="imgPlaceholder" src=${imgPlace} style="width: 40px;height: 40px;" />
                 <span class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>+ Upload Screenshot</span>
               </label>
             </div>
 
-            <div class="doubleDiv" style="display: flex;justify-content: space-between;align-items: center;">
-              <div class="borderParent" style="width:47%;border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
-                <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;">
-                  <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'> IP Address </span>
-                  <input type="text" name="IPAdd" id="IPAdd" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;font-size: 14.5px;padding:0;' value=${ip} style="padding:0px" readonly />
+            <div class="doubleDiv" style="display: flex;justify-content: space-between;align-items: center;margin:0px;padding:0px">
+              <div class="borderParent" style="width:47%;border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+                <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
+                  <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;padding:0px;margin:0px;'> IP Address </span>
+                  <input type="text" name="IPAdd" id="IPAdd" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;font-size: 14.5px;padding:0px;margin:0px;' value=${ip} style="padding:0px" readonly />
                 </div>
               </div>
 
-              <div class="borderParent" style="width:46%;border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
-                <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;">
-                  <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'> Location </span>
-                  <input type="text" name="Locate" id="Locate" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;  font-size: 14.5px; padding:0px' value=${locRes.geoplugin_countryName} readonly />
+              <div class="borderParent" style="width:46%;border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+                <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
+                  <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Location </span>
+                  <input type="text" name="Locate" id="Locate" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;  font-size: 14.5px; padding:0px;margin:0px;' value=${locRes.geoplugin_countryName} readonly />
                 </div>
               </div>
             </div>
 
-            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
-              <div id="descArea" style="display: flex;flex-direction: column;gap: 8px;background-color: #fff;padding: 10px;">
-                <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Description</span>
-                <textarea name="descInp" class="customScroll helv" style='outline: none;border: none;resize: none;padding-right: 5px;background: transparent;font-size: 13px;font-family: Helvetica, "Times New Roman", Times, serif;padding: 0px;' rows="6" placeholder="Enter details here..." id="descInp"></textarea>
+            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+              <div id="descArea" style="display: flex;flex-direction: column;gap: 8px;background-color: #fff;padding: 10px;margin:0px;">
+                <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'>Description</span>
+                <textarea name="descInp" class="customScroll helv" style='outline: none;border: none;resize: none;padding-right: 5px;background: transparent;font-size: 13px;font-family: Helvetica, "Times New Roman", Times, serif;padding: 0px;margin:0px;' rows="6" placeholder="Enter details here..." id="descInp"></textarea>
               </div>
             </div>
 
-            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
-              <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;">
-                <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;"> Current URL </span>
-                <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;font-size: 14.5px;padding: 0px;outline: none;' value=${window.location.href} readonly />
+            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+              <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
+                <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;"> Current URL </span>
+                <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;font-size: 14.5px;padding: 0px;outline: none;margin:0px;' value=${window.location.href} readonly />
               </div>
             </div>
           </div>
@@ -120,9 +120,9 @@ import {
         </div>
 
         <div id="botBtnWrap" style="display: flex;width: 100%;justify-content: space-between;height: 100%;">
-          <button class="botBtn" id="cancelBtn" type="button" style="width: 50%;border: none;background-color: #5d89d0;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 0 10px;padding: 10px 0 10px 30px;display: flex;align-items: center;justify-content: start;"> Cancel </button>
+          <button class="botBtn" id="cancelBtn" type="button" style='width: 50%;border: none;background-color: #5d89d0;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 0 10px;padding: 10px 0 10px 30px;display: flex;align-items: center;justify-content: start;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;'> Cancel </button>
           <button class="botBtn" id="submitBtn" type="submit" style="width: 50%;border: none;background-color: #5d89d0;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 10px 0;padding: 10px 30px 10px 0;display: flex;align-items: center;justify-content: end;gap: 10px;"> 
-          <span>Submit</span>
+          <span style='font-family: Helvetica, "Times New Roman", Times, serif;padding:0px;margin:0px;'>Submit</span>
           <img id='rArr' src=${rArrow} alt="Arrow" style="width: 12px;height: 12px;"  /> 
           </button>
         <div>
@@ -143,8 +143,8 @@ import {
     <span class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>+ Upload Screenshot</span>
   `;
   const dropOptsElem = `
-    <div id="dropOpts" style="position: absolute;top: 90%;opacity: 0;width: 100%;background-color: #fff;left: 0;padding: 10px 0;border: 1px solid #d4d4d4;border-radius: 5px;transition: all 0.3s ease-in-out; z-index:1199;">
-      <span class="headerInput px-10 helv" style='font-size: 12px;color: #979797;padding: 0 10px;font-family: Helvetica, "Times New Roman", Times, serif;'>
+    <div id="dropOpts" style="position: absolute;top: 90%;opacity: 0;width: 100%;background-color: #fff;left: 0;padding: 10px 0;border: 1px solid #d4d4d4;border-radius: 5px;transition: all 0.3s ease-in-out; z-index:1199;margin:0px;">
+      <span class="headerInput px-10 helv" style='font-size: 12px;color: #979797;padding: 0 10px;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;'>
         Select Submission Type
       </span>
       <div id="optWrap" class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;display: flex;flex-direction: column;margin-top: 5px;'>
