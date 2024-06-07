@@ -423,51 +423,51 @@ import {
         }, 200);
 
         console.log("pumasok");
-        // const createRes = await fetch(
-        //   "https://cdn-connectwise.srilan-catalinio.workers.dev/createTicket",
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       Authorization:
-        //         "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-        //       clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-        //     },
-        //     body: JSON.stringify({
-        //       summary: subName[1].trim(),
-        //       board: {
-        //         name: boardType[1].trim(),
-        //       },
-        //       company: {
-        //         id: 19299,
-        //       },
-        //       type: {
-        //         name: subType.textContent.trim(),
-        //       },
-        //     }),
-        //   }
-        // );
-        // const id = await createRes.json();
-        // console.log(id);
+        const createRes = await fetch(
+          "https://cdn-connectwise.srilan-catalinio.workers.dev/createTicket",
+          {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+              clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+            },
+            body: JSON.stringify({
+              summary: subName[1].trim(),
+              board: {
+                name: boardType[1].trim(),
+              },
+              company: {
+                id: 19299,
+              },
+              type: {
+                name: subType.textContent.trim(),
+              },
+            }),
+          }
+        );
+        const id = await createRes.json();
+        console.log(id);
 
-        // const putRes = await fetch(
-        //   "https://cdn-connectwise.srilan-catalinio.workers.dev/putDetails",
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       Authorization:
-        //         "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-        //       clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-        //     },
-        //     body: JSON.stringify({
-        //       id: id,
-        //       text: `Current URL: ${currUrl[1]} \nDescription:${descr[1]}`,
-        //       detailDescriptionFlag: true,
-        //       member: { id: 157 },
-        //     }),
-        //   }
-        // );
-        // const jason = await putRes.json();
-        // console.log(jason);
+        const putRes = await fetch(
+          "https://cdn-connectwise.srilan-catalinio.workers.dev/putDetails",
+          {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+              clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+            },
+            body: JSON.stringify({
+              id: id,
+              text: `Current URL: ${currUrl[1]} \nDescription:${descr[1]} \nIP Address:${ipAdd[1]} \nLocation:${locate[1]}`,
+              detailDescriptionFlag: true,
+              member: { id: 157 },
+            }),
+          }
+        );
+        const jason = await putRes.json();
+        console.log(jason);
       });
     }, 400);
 
