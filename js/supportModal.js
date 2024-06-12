@@ -22,7 +22,6 @@ import {
   const locRes = await fetch(`http://www.geoplugin.net/json.gp?ip=${ip}`).then(
     async (res) => await res.json()
   );
-  console.log(locRes);
 
   const modalId = `support-modal-${seedId()}`;
 
@@ -51,7 +50,7 @@ import {
             </div>
           </div>
 
-          <div id="overflowParent" class="customScroll" style="width: 100%;flex-grow: 1;display: flex;padding-right: 8px;flex-direction: column;overflow-y: scroll;gap: 10px;height: 315px;margin:0px;">
+          <div id="overflowParent" class="customScroll" style="width: 100%;flex-grow: 1;display: flex;padding-right: 8px;flex-direction: column;overflow-y: scroll;gap: 10px;height: 315px;margin:0px;padding-bottom: 5px;">
             <div id="boardWrap" style="display: flex;width: 100%;gap: 10px;margin:0px;">
               <div class="borderParent radioOpt" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;flex-grow: 1;margin:0px;">
                 <input type="radio" name="boardType" id="sbddm" value="SB DDM" checked style="opacity: 0;position: absolute;" />
@@ -288,7 +287,6 @@ import {
     setTimeout(() => {
       // For Cancel Button
       const cancelBtn = document.getElementById("cancelBtn");
-      console.log(cancelBtn);
 
       cancelBtn.addEventListener("mouseover", () => {
         cancelBtn.style.backgroundColor = "#f36974";
@@ -315,7 +313,6 @@ import {
 
       // Submit Button Hover Effect
       const submitBtn = document.getElementById("submitBtn");
-      console.log(cancelBtn);
 
       submitBtn.addEventListener("mouseover", () => {
         submitBtn.style.backgroundColor = "#719fe8";
@@ -354,10 +351,15 @@ import {
     setTimeout(() => {
       const form = document.getElementById("formElem");
       console.log(form);
+
       form.addEventListener("submit", async (ev) => {
         ev.preventDefault();
         const data = new FormData(ev.target);
         const subType = document.getElementById("submissionType");
+
+        // Disable submit button while processing
+        const submitBtn = document.getElementById("submitBtn");
+        submitBtn.disabled = true;
 
         const [boardType, subName, ssImg, ipAdd, locate, descr, currUrl] = [
           ...data.entries(),
@@ -367,22 +369,22 @@ import {
 
         const [nameBool, descBool] = [subName[1] === "", descr[1] === ""];
 
+        // Turn Images to base64
+        console.log(ssImg[1].type);
+        if (ssImg[1].type === "application/octet-stream") {
+          console.log("DataURI:", ss64);
+        } else {
+          const FR = new FileReader();
+
+          FR.addEventListener("load", () => {
+            ss64 = FR.result;
+          });
+
+          FR.readAsDataURL(ssImg[1]);
+        }
+
         // IF incomplete fields
         if (nameBool || descBool) {
-          // Turn Images to base64
-          console.log(ssImg[1].type);
-          if (ssImg[1].type === "application/octet-stream") {
-            console.log("DataURI:", ss64);
-          } else {
-            const FR = new FileReader();
-
-            FR.addEventListener("load", () => {
-              console.log(FR.result);
-            });
-
-            FR.readAsDataURL(ssImg[1]);
-          }
-
           // Add Error toast message
           console.log("ERROR");
           const modalContent = document.getElementById("modalContent");
@@ -401,6 +403,8 @@ import {
               toastMSG.remove();
             }, 4000);
           }, 200);
+
+          submitBtn.disabled = false;
           return;
         }
 
@@ -423,14 +427,15 @@ import {
         }, 200);
 
         console.log("pumasok");
+
+        // Create Ticket Endpoint
         const createRes = await fetch(
-          "https://cdn-connectwise.srilan-catalinio.workers.dev/createTicket",
+          "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/createTicket",
           {
             method: "POST",
             headers: {
-              Authorization:
-                "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-              clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+              auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+              "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
             },
             body: JSON.stringify({
               summary: subName[1].trim(),
@@ -449,17 +454,18 @@ import {
         const id = await createRes.json();
         console.log(id);
 
+        // Put Ticket Details
         const putRes = await fetch(
-          "https://cdn-connectwise.srilan-catalinio.workers.dev/putDetails",
+          "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/putDetails",
           {
             method: "POST",
             headers: {
-              Authorization:
-                "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-              clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+              // "Content-Type": "application/json",
+              auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+              "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
             },
             body: JSON.stringify({
-              id: id,
+              id: id.id,
               text: `Current URL: ${currUrl[1]} \nDescription:${descr[1]} \nIP Address:${ipAdd[1]} \nLocation:${locate[1]}`,
               detailDescriptionFlag: true,
               member: { id: 157 },
@@ -468,6 +474,36 @@ import {
         );
         const jason = await putRes.json();
         console.log(jason);
+
+        // Upload Screenshot
+        const uplRes = await fetch(
+          "https://cdn-connectwise.srilan-catalinio.workers.dev/uploadDocument",
+          {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+              clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+            },
+            body: JSON.stringify({
+              title: subName[1],
+              id: id.id,
+              file: ss64,
+            }),
+          }
+        );
+
+        const respo = await uplRes.json();
+        console.log("upload Response", respo);
+
+        // Reset Values
+        const subNameInp = document.getElementById("subName");
+        const descInp = document.getElementById("descInp");
+        subNameInp.value = "";
+        descInp.value = "";
+
+        // Enable submit button
+        submitBtn.disabled = false;
       });
     }, 400);
 
