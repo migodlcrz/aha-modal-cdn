@@ -51,15 +51,8 @@ import {
           </div>
 
           <div id="overflowParent" class="customScroll" style="width: 100%;flex-grow: 1;display: flex;padding-right: 8px;flex-direction: column;overflow-y: scroll;gap: 10px;height: 315px;margin:0px;padding-bottom: 5px;">
-            <div class="borderParent dropMargin" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
-              <div id="boardWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 10px;position: relative;">
-                <div id="drop" style="background-color: #ffffff;color: black;border-radius: 5px;font-size: 14px;display: flex;flex-direction: column;gap: 4px;">
-                  <span class="headerInput helv" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Board Type</span>
-                  <span id="boardType" class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>SB Milo Trajector Medical</span>
-                </div>
-                <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" style="rotate: 90deg;width: 12px;height: 12px;" />
-              </div>
-            </div>
+
+
             
             <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
               <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
@@ -70,26 +63,20 @@ import {
 
             <div class="borderParent upImg" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;border: 3px dashed #a1c1f3;margin:0px;">
               <input type="file" accept="image/png, image/jpeg" id="uploadBTN" name="uploadBTN" style="position: absolute;width: 0.1px;height: 0.1px;opacity: 0;z-index: 0;overflow: hidden;" />
-              <label for="uploadBTN" id="upLbl" style="height: 150px;background: #eaf2ff;border-radius: 5px;display: flex;align-items: center;justify-content: center;cursor: pointer;color: #92abd3;display: flex;flex-direction: column;gap: 15px;font-size: 14px;margin:0px;">
-                <image id="imgPlaceholder" src=${imgPlace} style="width: 40px;height: 40px;" />
-                <span class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>+ Upload Screenshot</span>
-              </label>
-            </div>
-
-            <div class="doubleDiv" style="display: flex;gap:10px;justify-content: space-between;align-items: center;margin:0px;padding:0px">
-              <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
-                <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
-                  <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;padding:0px;margin:0px;'> IP Address </span>
-                  <input type="text" name="IPAdd" id="IPAdd" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;font-size: 14.5px;padding:0px;margin:0px;' value=${ip} style="padding:0px" readonly />
-                </div>
+                <label for="uploadBTN" id="upLbl" style="height: 150px;background: #eaf2ff;border-radius: 5px;display: flex;align-items: center;justify-content: center;cursor: pointer;color: #92abd3;display: flex;flex-direction: column;gap: 15px;font-size: 14px;margin:0px;">
+                  <image id="imgPlaceholder" src=${imgPlace} style="width: 40px;height: 40px;" />
+                  <span class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>+ Upload Screenshot</span>
+                </label>
               </div>
 
-              <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
-                <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
-                  <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Location </span>
-                  <input type="text" name="Locate" id="Locate" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;  font-size: 14.5px; padding:0px;margin:0px;' value=${locRes.geoplugin_countryName} readonly />
+              <div class="borderParent dropMargin" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
+                <div id="boardWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 10px;position: relative;">
+                  <div id="drop" style="background-color: #ffffff;color: black;border-radius: 5px;font-size: 14px;display: flex;flex-direction: column;gap: 4px;">
+                    <span class="headerInput helv" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Board Type</span>
+                    <span id="boardType" class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>SB Milo Trajector Medical</span>
+                  </div>
+                  <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" style="rotate: 90deg;width: 12px;height: 12px;" />
                 </div>
-              </div>
             </div>
 
             <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
@@ -99,12 +86,36 @@ import {
               </div>
             </div>
 
+            <div class="doubleDiv" style="display: flex;gap:10px;justify-content: space-between;align-items: center;margin:0px;padding:0px">
+              <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+                <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
+                  <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;padding:0px;margin:0px;'> IP Address </span>
+                  <input type="text" name="IPAdd" id="IPAdd" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #777777;font-size: 14.5px;padding:0px;margin:0px;' value=${ip} style="padding:0px" readonly />
+                </div>
+              </div>
+
+              <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+                <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
+                  <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Location </span>
+                  <input type="text" name="Locate" id="Locate" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #777777;  font-size: 14.5px; padding:0px;margin:0px;' value=${locRes.geoplugin_countryName} readonly />
+                </div>
+              </div>
+            </div>
+
             <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
               <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                 <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;"> Current URL </span>
-                <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;font-size: 14.5px;padding: 0px;outline: none;margin:0px;' value=${window.location.href} readonly />
+                <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #777777;font-size: 14.5px;padding: 0px;outline: none;margin:0px;' value=${window.location.href} readonly />
               </div>
             </div>
+
+            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+              <div class="inpWrap" style="display: flex;flex-direction: row;padding: 8px 10px;align-items:center;gap: 10px;margin:0px;">
+                <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;"> Creator </span>
+                <span id="currentUser" style="font-size: 13px;color: #777777;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;">Kuya Inno</span>
+              </div>
+            </div>
+            
           </div>
 
         </div>
@@ -402,6 +413,7 @@ import {
         const data = new FormData(ev.target);
         const subType = document.getElementById("submissionType");
         const board = document.getElementById("boardType");
+        const currUser = document.getElementById("currentUser");
 
         // Disable submit button while processing
         const submitBtn = document.getElementById("submitBtn");
@@ -411,6 +423,7 @@ import {
           ...data.entries(),
         ];
         console.log([
+          currUser.textContent,
           subType.textContent,
           board.textContent,
           ...data.entries(),
@@ -520,7 +533,9 @@ import {
                 currUrl[1]
               } \nDescription:${descr[1].trim()} \nIP Address:${
                 ipAdd[1]
-              } \nLocation:${locate[1]}`,
+              } \nLocation:${
+                locate[1]
+              } \nCurrent User:${currUser.textContent.trim()}`,
               detailDescriptionFlag: true,
               member: { id: 157 },
             }),
