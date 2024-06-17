@@ -8,6 +8,9 @@ import {
 } from "../assets/images.js";
 
 (async function () {
+  console.log("DISPLAY NAME: ", displayName);
+  console.log("MILO SITE: ", miloSite);
+
   const seedId = () => {
     let id = "id" + Math.random().toString(16).slice(2);
     return id;
@@ -97,7 +100,13 @@ import {
               <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;margin:0px;">
                 <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                   <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Location </span>
+<<<<<<< HEAD
                   <input type="text" name="Locate" id="Locate" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;cursor:not-allowed;color: #777777;  font-size: 14.5px; padding:0px;margin:0px;' value=${locRes.geoplugin_countryName} readonly />
+=======
+                  <input type="text" name="Locate" id="Locate" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #777777;  font-size: 14.5px; padding:0px;margin:0px;' value=${
+                    locRes.geoplugin_countryName
+                  } readonly />
+>>>>>>> ce56b7d8abcc47964378e943691cb89ba8cabb52
                 </div>
               </div>
             </div>
@@ -105,14 +114,27 @@ import {
             <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: delault;margin:0px;">
               <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                 <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;"> Current URL </span>
+<<<<<<< HEAD
                 <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;cursor:not-allowed;color: #777777;font-size: 14.5px;padding: 0px;outline: none;margin:0px;' value=${window.location.href} readonly />
+=======
+                <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #777777;font-size: 14.5px;padding: 0px;outline: none;margin:0px;' value=${
+                  window.location.href
+                } readonly />
+>>>>>>> ce56b7d8abcc47964378e943691cb89ba8cabb52
               </div>
             </div>
 
             <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: delault;margin:0px;">
               <div class="inpWrap" style="display: flex;flex-direction: row;padding: 8px 10px;align-items:center;gap: 10px;margin:0px;">
+<<<<<<< HEAD
                 <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;cursor:default;"> Creator </span>
                 <span id="currentUser" style="font-size: 13px;cursor:not-allowed;color: #777777;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;">Kuya Inno</span>
+=======
+                <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;"> Creator </span>
+                <span id="currentUser" style="font-size: 13px;color: #777777;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;">${
+                  displayName ? displayName : "No User"
+                }</span>
+>>>>>>> ce56b7d8abcc47964378e943691cb89ba8cabb52
               </div>
             </div>
             
