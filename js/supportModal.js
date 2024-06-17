@@ -8,9 +8,6 @@ import {
 } from "../assets/images.js";
 
 (async function () {
-  console.log("DISPLAY NAME: ", displayName);
-  console.log("MILO SITE: ", miloSite);
-
   const seedId = () => {
     let id = "id" + Math.random().toString(16).slice(2);
     return id;
@@ -46,7 +43,7 @@ import {
           <div class="borderParent dropMargin" id="nameBorder" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
             <div id="dropWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 15px 8px 10px;position: relative;">
               <div id="drop" style="background-color: #ffffff;color: black;border-radius: 5px;font-size: 14px;display: flex;flex-direction: column;gap: 4px;">
-                <span class="headerInput helv" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Submission Type</span>
+                <span class="headerInput helv" id="tSubNameHead" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Submission Type</span>
                 <span id="submissionType" class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>Accidental Submission/Other</span>
               </div>
               <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" style="rotate: 90deg;width: 12px;height: 12px;" />
@@ -59,7 +56,7 @@ import {
             
             <div class="borderParent" id="tsubmissionName" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
               <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
-                <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Submission Name </span>
+                <span class="headerInput helv" id="tSubmissionNameHeader" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Submission Name </span>
                 <input type="text" name="subName" id="subName" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;font-size: 15px;padding: 0px;margin:0px;' placeholder="Type here..." autocomplete="off" />
               </div>
             </div>
@@ -75,7 +72,7 @@ import {
               <div class="borderParent dropMargin" id="boardBorder" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;">
                 <div id="boardWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 10px;position: relative;">
                   <div id="drop" style="background-color: #ffffff;color: black;border-radius: 5px;font-size: 14px;display: flex;flex-direction: column;gap: 4px;">
-                    <span class="headerInput helv" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Board Type</span>
+                    <span class="headerInput helv" id="tBoardHead" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Board Type</span>
                     <span id="boardType" class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>SB Milo Trajector Medical</span>
                   </div>
                   <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" style="rotate: 90deg;width: 12px;height: 12px;" />
@@ -84,8 +81,8 @@ import {
 
             <div class="borderParent" id="tDescTicField" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;margin:0px;">
               <div id="descArea" style="display: flex;flex-direction: column;gap: 8px;background-color: #fff;padding: 10px;margin:0px;">
-                <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'>Description</span>
-                <textarea name="descInp" class="customScroll helv" style='outline: none;border: none;resize: none;padding-right: 5px;background: transparent;font-size: 14px;font-family: Helvetica, "Times New Roman", Times, serif;padding: 0px;padding-right:13px;margin:0px;' rows="6" placeholder="Enter details here..." value="" id="descInp"></textarea>
+                <span class="headerInput helv" id="t_descHeader" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'>Description</span>
+                <textarea name="descInp" class="customScroll helv" id="t_descInp" style='outline: none;border: none;resize: none;padding-right: 5px;background: transparent;font-size: 14px;font-family: Helvetica, "Times New Roman", Times, serif;padding: 0px;padding-right:13px;margin:0px;' rows="6" placeholder="Enter details here..." value="" id="descInp"></textarea>
               </div>
             </div>
 
@@ -100,13 +97,7 @@ import {
               <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;margin:0px;">
                 <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                   <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Location </span>
-<<<<<<< HEAD
                   <input type="text" name="Locate" id="Locate" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;cursor:not-allowed;color: #777777;  font-size: 14.5px; padding:0px;margin:0px;' value=${locRes.geoplugin_countryName} readonly />
-=======
-                  <input type="text" name="Locate" id="Locate" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #777777;  font-size: 14.5px; padding:0px;margin:0px;' value=${
-                    locRes.geoplugin_countryName
-                  } readonly />
->>>>>>> ce56b7d8abcc47964378e943691cb89ba8cabb52
                 </div>
               </div>
             </div>
@@ -114,27 +105,14 @@ import {
             <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: delault;margin:0px;">
               <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                 <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;"> Current URL </span>
-<<<<<<< HEAD
                 <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;cursor:not-allowed;color: #777777;font-size: 14.5px;padding: 0px;outline: none;margin:0px;' value=${window.location.href} readonly />
-=======
-                <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #777777;font-size: 14.5px;padding: 0px;outline: none;margin:0px;' value=${
-                  window.location.href
-                } readonly />
->>>>>>> ce56b7d8abcc47964378e943691cb89ba8cabb52
               </div>
             </div>
 
             <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: delault;margin:0px;">
               <div class="inpWrap" style="display: flex;flex-direction: row;padding: 8px 10px;align-items:center;gap: 10px;margin:0px;">
-<<<<<<< HEAD
                 <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;cursor:default;"> Creator </span>
                 <span id="currentUser" style="font-size: 13px;cursor:not-allowed;color: #777777;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;">Kuya Inno</span>
-=======
-                <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;"> Creator </span>
-                <span id="currentUser" style="font-size: 13px;color: #777777;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;">${
-                  displayName ? displayName : "No User"
-                }</span>
->>>>>>> ce56b7d8abcc47964378e943691cb89ba8cabb52
               </div>
             </div>
             
@@ -280,6 +258,10 @@ import {
       const boardWrap = document.getElementById("boardWrap");
       const divBorder = document.getElementById("nameBorder");
       const bordBorder = document.getElementById("boardBorder");
+      const nameHead = document.getElementById("tSubNameHead");
+      const bordHead = document.getElementById("tBoardHead");
+      const subTypeVal = document.getElementById("submissionType");
+      const boardTypeVal = document.getElementById("boardType");
       // Submission Type Dropdown
       dropWrap.addEventListener("click", () => {
         let dropOpts = document.getElementById("dropOpts");
@@ -287,6 +269,8 @@ import {
         if (dropOpts) {
           // close them
           divBorder.style.border = "1px solid #bebebe";
+          nameHead.style.color = "#979797";
+          subTypeVal.style.color = "#000000";
           dropOpts.style.top = "90%";
           dropOpts.style.opacity = "0";
           setTimeout(() => {
@@ -295,6 +279,8 @@ import {
         } else {
           // open the options
           divBorder.style.border = "1px solid #488eff";
+          nameHead.style.color = "#488eff";
+          subTypeVal.style.color = "#0b4fbe";
           dropWrap.insertAdjacentHTML("beforeend", dropOptsElem);
           dropOpts = document.getElementById("dropOpts");
           setTimeout(() => {
@@ -327,6 +313,8 @@ import {
         if (boardOpts) {
           // close the dropdown
           bordBorder.style.border = "1px solid #bebebe";
+          bordHead.style.color = "#979797";
+          boardTypeVal.style.color = "#000000";
           boardOpts.style.top = "90%";
           boardOpts.style.opacity = "0";
           setTimeout(() => {
@@ -335,6 +323,8 @@ import {
         } else {
           // show dropdown options
           bordBorder.style.border = "1px solid #488eff";
+          boardTypeVal.style.color = "#0b4fbe";
+          bordHead.style.color = "#488eff";
           boardWrap.insertAdjacentHTML("beforeend", boardDropOpts);
           boardOpts = document.getElementById("boardOpts");
           setTimeout(() => {
@@ -365,8 +355,31 @@ import {
 
     // Input Effects
     setTimeout(() => {
-      const nameField = document.getElementById("subName");
-      const descField = document.getElementById("subName");
+      const fields = [
+        {
+          field: document.getElementById("subName"),
+          header: document.getElementById("tSubmissionNameHeader"),
+          border: document.getElementById("tsubmissionName"),
+        },
+        {
+          field: document.getElementById("t_descInp"),
+          header: document.getElementById("t_descHeader"),
+          border: document.getElementById("tDescTicField"),
+        },
+      ];
+
+      fields.forEach((item) => {
+        item.field.addEventListener("focus", () => {
+          item.header.style.color = "#488eff";
+          item.border.style.border = "1px solid #488eff";
+          item.field.style.color = "#0b4fbe";
+        });
+        item.field.addEventListener("focusout", () => {
+          item.header.style.color = "#979797";
+          item.border.style.border = "1px solid #bebebe";
+          item.field.style.color = "#000000";
+        });
+      });
     }, 300);
 
     // Cancel, Submit, Radio Button Effects
@@ -405,31 +418,6 @@ import {
       submitBtn.addEventListener("mouseout", () => {
         submitBtn.style.backgroundColor = "#265eb9";
       });
-
-      // Radio Effects
-      // const radLabel = document.querySelector(
-      //   "input[type='radio']:checked + label .innerBoard"
-      // );
-      // radLabel.style.backgroundColor = "#f0616c";
-      // radLabel.style.color = "#fff";
-      // // Changing of Color on selected Radio BTN
-      // const radios = document.querySelectorAll("input[type='radio']");
-      // for (let rad of radios) {
-      //   rad.addEventListener("click", () => {
-      //     const allLbl = document.querySelectorAll(
-      //       "input[type='radio'] + label .innerBoard"
-      //     );
-      //     for (let lbl of allLbl) {
-      //       lbl.style.backgroundColor = "#eaf2ff";
-      //       lbl.style.color = "#7e7e7e";
-      //     }
-      //     const radLabel = document.querySelectorAll(
-      //       "input[type='radio']:checked + label .innerBoard"
-      //     );
-      //     radLabel[0].style.backgroundColor = "#f0616c";
-      //     radLabel[0].style.color = "#fff";
-      //   });
-      // }
     }, 300);
 
     // Submitting Form
