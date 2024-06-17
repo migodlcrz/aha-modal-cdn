@@ -40,7 +40,7 @@ import {
       </div>
       <form id="formElem" style="display: flex;flex-direction: column;flex-grow: 1;gap: 10px;margin:0px;padding:0px;">
         <div id="ticketWrap" style="padding: 5px 20px 5px 20px;display: flex;flex-direction: column;gap: 10px;">
-          <div class="borderParent dropMargin" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
+          <div class="borderParent dropMargin" id="nameBorder" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
             <div id="dropWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 15px 8px 10px;position: relative;">
               <div id="drop" style="background-color: #ffffff;color: black;border-radius: 5px;font-size: 14px;display: flex;flex-direction: column;gap: 4px;">
                 <span class="headerInput helv" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Submission Type</span>
@@ -54,7 +54,7 @@ import {
 
 
             
-            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
+            <div class="borderParent" id="tsubmissionName" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
               <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                 <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Submission Name </span>
                 <input type="text" name="subName" id="subName" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;font-size: 15px;padding: 0px;margin:0px;' placeholder="Type here..." autocomplete="off" />
@@ -69,7 +69,7 @@ import {
                 </label>
               </div>
 
-              <div class="borderParent dropMargin" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
+              <div class="borderParent dropMargin" id="boardBorder" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;">
                 <div id="boardWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 10px;position: relative;">
                   <div id="drop" style="background-color: #ffffff;color: black;border-radius: 5px;font-size: 14px;display: flex;flex-direction: column;gap: 4px;">
                     <span class="headerInput helv" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Board Type</span>
@@ -79,40 +79,40 @@ import {
                 </div>
             </div>
 
-            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+            <div class="borderParent" id="tDescTicField" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;margin:0px;">
               <div id="descArea" style="display: flex;flex-direction: column;gap: 8px;background-color: #fff;padding: 10px;margin:0px;">
                 <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'>Description</span>
-                <textarea name="descInp" class="customScroll helv" style='outline: none;border: none;resize: none;padding-right: 5px;background: transparent;font-size: 14px;font-family: Helvetica, "Times New Roman", Times, serif;padding: 0px;padding-right:13px;margin:0px;' rows="6" placeholder="Enter details here..." id="descInp"></textarea>
+                <textarea name="descInp" class="customScroll helv" style='outline: none;border: none;resize: none;padding-right: 5px;background: transparent;font-size: 14px;font-family: Helvetica, "Times New Roman", Times, serif;padding: 0px;padding-right:13px;margin:0px;' rows="6" placeholder="Enter details here..." value="" id="descInp"></textarea>
               </div>
             </div>
 
             <div class="doubleDiv" style="display: flex;gap:10px;justify-content: space-between;align-items: center;margin:0px;padding:0px">
-              <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+              <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;margin:0px;">
                 <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                   <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;padding:0px;margin:0px;'> IP Address </span>
-                  <input type="text" name="IPAdd" id="IPAdd" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #777777;font-size: 14.5px;padding:0px;margin:0px;' value=${ip} style="padding:0px" readonly />
+                  <input type="text" name="IPAdd" id="IPAdd" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;cursor:not-allowed;color: #777777;font-size: 14.5px;padding:0px;margin:0px;' value=${ip} style="padding:0px" readonly />
                 </div>
               </div>
 
-              <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+              <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;margin:0px;">
                 <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                   <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Location </span>
-                  <input type="text" name="Locate" id="Locate" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #777777;  font-size: 14.5px; padding:0px;margin:0px;' value=${locRes.geoplugin_countryName} readonly />
+                  <input type="text" name="Locate" id="Locate" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;cursor:not-allowed;color: #777777;  font-size: 14.5px; padding:0px;margin:0px;' value=${locRes.geoplugin_countryName} readonly />
                 </div>
               </div>
             </div>
 
-            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: delault;margin:0px;">
               <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                 <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;"> Current URL </span>
-                <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #777777;font-size: 14.5px;padding: 0px;outline: none;margin:0px;' value=${window.location.href} readonly />
+                <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;cursor:not-allowed;color: #777777;font-size: 14.5px;padding: 0px;outline: none;margin:0px;' value=${window.location.href} readonly />
               </div>
             </div>
 
-            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: delault;margin:0px;">
               <div class="inpWrap" style="display: flex;flex-direction: row;padding: 8px 10px;align-items:center;gap: 10px;margin:0px;">
-                <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;"> Creator </span>
-                <span id="currentUser" style="font-size: 13px;color: #777777;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;">Kuya Inno</span>
+                <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;cursor:default;"> Creator </span>
+                <span id="currentUser" style="font-size: 13px;cursor:not-allowed;color: #777777;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;">Kuya Inno</span>
               </div>
             </div>
             
@@ -144,7 +144,7 @@ import {
     <span class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>+ Upload Screenshot</span>
   `;
   const dropOptsElem = `
-    <div id="dropOpts" style="position: absolute;top: 90%;opacity: 0;width: 100%;background-color: #fff;left: 0;padding: 10px 0;border: 1px solid #d4d4d4;border-radius: 5px;transition: all 0.3s ease-in-out; z-index:1199;margin:0px;box-shadow:0 2px 13px -5px #181818;">
+    <div id="dropOpts" style="position: absolute;top: 90%;opacity: 0;width: 100%;background-color: #fff;left: 0;padding: 10px 0;border: 1px solid #488eff;border-radius: 5px;transition: all 0.3s ease-in-out; z-index:1199;margin:0px;box-shadow:0 2px 13px -5px #181818;">
       <span class="headerInput px-10 helv" style='font-size: 12px;color: #979797;padding: 0 10px;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;'>
         Select Submission Type
       </span>
@@ -157,7 +157,7 @@ import {
     </div>
   `;
   const boardDropOpts = `
-  <div id="boardOpts" style="position: absolute;top: 90%;opacity: 0;width: 100%;background-color: #fff;left: 0;padding: 10px 0;border: 1px solid #d4d4d4;border-radius: 5px;transition: all 0.3s ease-in-out; z-index:1198;margin:0px;box-shadow:0 2px 13px -5px #181818;">
+  <div id="boardOpts" style="position: absolute;top: 90%;opacity: 0;width: 100%;background-color: #fff;left: 0;padding: 10px 0;border: 1px solid #488eff;border-radius: 5px;transition: all 0.3s ease-in-out; z-index:1198;margin:0px;box-shadow:0 2px 13px -5px #181818;">
     <span class="headerInput px-10 helv" style='font-size: 12px;color: #979797;padding: 0 10px;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;'>
       Select Board Type
     </span>
@@ -208,9 +208,7 @@ import {
     const stream = await navigator.mediaDevices.getDisplayMedia({
       preferCurrentTab: true,
     });
-
     const vid = document.createElement("video");
-
     vid.addEventListener("loadedmetadata", () => {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
@@ -226,7 +224,6 @@ import {
       // a.href = canvas.toDataURL("image/png");
       // console.log(canvas.toDataURL("image/png"));
     });
-
     vid.srcObject = stream;
     vid.play();
 
@@ -250,10 +247,8 @@ import {
 
       uploadFile.addEventListener("change", (input) => {
         const [file] = input.target.files;
-        console.log(input.target.files, "File", file);
         if (file) {
           const url = URL.createObjectURL(file);
-          console.log(url);
           uploadLabel.innerHTML = retSSElem(url);
         }
       });
@@ -261,11 +256,15 @@ import {
       // Dropdown functions
       const dropWrap = document.getElementById("dropWrap");
       const boardWrap = document.getElementById("boardWrap");
+      const divBorder = document.getElementById("nameBorder");
+      const bordBorder = document.getElementById("boardBorder");
       // Submission Type Dropdown
       dropWrap.addEventListener("click", () => {
         let dropOpts = document.getElementById("dropOpts");
+
         if (dropOpts) {
           // close them
+          divBorder.style.border = "1px solid #bebebe";
           dropOpts.style.top = "90%";
           dropOpts.style.opacity = "0";
           setTimeout(() => {
@@ -273,6 +272,7 @@ import {
           }, 400);
         } else {
           // open the options
+          divBorder.style.border = "1px solid #488eff";
           dropWrap.insertAdjacentHTML("beforeend", dropOptsElem);
           dropOpts = document.getElementById("dropOpts");
           setTimeout(() => {
@@ -304,6 +304,7 @@ import {
         let boardOpts = document.getElementById("boardOpts");
         if (boardOpts) {
           // close the dropdown
+          bordBorder.style.border = "1px solid #bebebe";
           boardOpts.style.top = "90%";
           boardOpts.style.opacity = "0";
           setTimeout(() => {
@@ -311,6 +312,7 @@ import {
           }, 200);
         } else {
           // show dropdown options
+          bordBorder.style.border = "1px solid #488eff";
           boardWrap.insertAdjacentHTML("beforeend", boardDropOpts);
           boardOpts = document.getElementById("boardOpts");
           setTimeout(() => {
@@ -339,6 +341,12 @@ import {
       });
     }, 300);
 
+    // Input Effects
+    setTimeout(() => {
+      const nameField = document.getElementById("subName");
+      const descField = document.getElementById("subName");
+    }, 300);
+
     // Cancel, Submit, Radio Button Effects
     setTimeout(() => {
       // For Cancel Button
@@ -360,7 +368,6 @@ import {
           modal.style.borderRadius = "100%";
         }, 350);
         setTimeout(() => {
-          console.log(modalBTN);
           modal.innerHTML = modalBTN;
           const openBtn = document.getElementById("modalBTN");
           openBtn.addEventListener("click", openModal);
@@ -406,7 +413,6 @@ import {
     // Submitting Form
     setTimeout(() => {
       const form = document.getElementById("formElem");
-      console.log(form);
 
       form.addEventListener("submit", async (ev) => {
         ev.preventDefault();
@@ -414,12 +420,18 @@ import {
         const subType = document.getElementById("submissionType");
         const board = document.getElementById("boardType");
         const currUser = document.getElementById("currentUser");
+        const nameField = document.getElementById("tsubmissionName");
+        const descField = document.getElementById("tDescTicField");
 
         // Disable submit button while processing
         const submitBtn = document.getElementById("submitBtn");
         submitBtn.disabled = true;
 
-        const [subName, ssImg, ipAdd, locate, descr, currUrl] = [
+        // Restart color of border for error indicator
+        nameField.style.border = "1px solid #bebebe";
+        descField.style.border = "1px solid #bebebe";
+
+        const [subName, ssImg, descr, ipAdd, locate, currUrl] = [
           ...data.entries(),
         ];
         console.log([
@@ -431,9 +443,15 @@ import {
         console.log(subName, descr, currUrl, subType.textContent);
 
         const [nameBool, descBool] = [subName[1] === "", descr[1] === ""];
-
+        console.log(nameBool, descBool, descr, typeof descr[1]);
         // IF incomplete fields
         if (nameBool || descBool) {
+          if (nameBool) {
+            nameField.style.border = "1px solid #ff4949";
+          }
+          if (descBool) {
+            descField.style.border = "1px solid #ff4949";
+          }
           // Add Error toast message
           console.log("ERROR");
           const modalContent = document.getElementById("modalContent");
@@ -492,78 +510,78 @@ import {
         console.log("pumasok");
 
         // Create Ticket Endpoint
-        const createRes = await fetch(
-          "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/createTicket",
-          {
-            method: "POST",
-            headers: {
-              auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-              "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-            },
-            body: JSON.stringify({
-              summary: subName[1].trim(),
-              board: {
-                name: board.textContent.trim(),
-              },
-              company: {
-                id: 19299,
-              },
-              type: {
-                name: subType.textContent.trim(),
-              },
-            }),
-          }
-        );
-        const id = await createRes.json();
-        console.log(id);
+        // const createRes = await fetch(
+        //   "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/createTicket",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+        //       "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+        //     },
+        //     body: JSON.stringify({
+        //       summary: subName[1].trim(),
+        //       board: {
+        //         name: board.textContent.trim(),
+        //       },
+        //       company: {
+        //         id: 19299,
+        //       },
+        //       type: {
+        //         name: subType.textContent.trim(),
+        //       },
+        //     }),
+        //   }
+        // );
+        // const id = await createRes.json();
+        // console.log(id);
 
-        // Put Ticket Details
-        const putRes = await fetch(
-          "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/putDetails",
-          {
-            method: "POST",
-            headers: {
-              // "Content-Type": "application/json",
-              auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-              "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-            },
-            body: JSON.stringify({
-              id: id.id,
-              text: `Current URL: ${
-                currUrl[1]
-              } \nDescription:${descr[1].trim()} \nIP Address:${
-                ipAdd[1]
-              } \nLocation:${
-                locate[1]
-              } \nCurrent User:${currUser.textContent.trim()}`,
-              detailDescriptionFlag: true,
-              member: { id: 157 },
-            }),
-          }
-        );
-        const jason = await putRes.json();
-        console.log(jason);
+        // // Put Ticket Details
+        // const putRes = await fetch(
+        //   "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/putDetails",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       // "Content-Type": "application/json",
+        //       auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+        //       "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+        //     },
+        //     body: JSON.stringify({
+        //       id: id.id,
+        //       text: `Current URL: ${
+        //         currUrl[1]
+        //       } \nDescription:${descr[1].trim()} \nIP Address:${
+        //         ipAdd[1]
+        //       } \nLocation:${
+        //         locate[1]
+        //       } \nCurrent User:${currUser.textContent.trim()}`,
+        //       detailDescriptionFlag: true,
+        //       member: { id: 157 },
+        //     }),
+        //   }
+        // );
+        // const jason = await putRes.json();
+        // console.log(jason);
 
-        // Upload Screenshot
-        const uplRes = await fetch(
-          "https://cdn-connectwise.srilan-catalinio.workers.dev/uploadDocument",
-          {
-            method: "POST",
-            headers: {
-              Authorization:
-                "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-              clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-            },
-            body: JSON.stringify({
-              title: subName[1],
-              id: id.id,
-              file: ss64,
-            }),
-          }
-        );
+        // // Upload Screenshot
+        // const uplRes = await fetch(
+        //   "https://cdn-connectwise.srilan-catalinio.workers.dev/uploadDocument",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       Authorization:
+        //         "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+        //       clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+        //     },
+        //     body: JSON.stringify({
+        //       title: subName[1],
+        //       id: id.id,
+        //       file: ss64,
+        //     }),
+        //   }
+        // );
 
-        const respo = await uplRes.json();
-        console.log("upload Response", respo);
+        // const respo = await uplRes.json();
+        // console.log("upload Response", respo);
 
         // Reset Values
         const subNameInp = document.getElementById("subName");
