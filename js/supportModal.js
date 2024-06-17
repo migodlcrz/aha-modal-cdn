@@ -8,6 +8,9 @@ import {
 } from "../assets/images.js";
 
 (async function () {
+  console.log("DISPLAY NAME: ", displayName);
+  console.log("MILO SITE: ", miloSite);
+
   const seedId = () => {
     let id = "id" + Math.random().toString(16).slice(2);
     return id;
