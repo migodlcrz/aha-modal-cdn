@@ -35,13 +35,13 @@ import {
   const modalContentElement = `
   <div id='contentWrapper' style="width: 100%;height: 100%;position: relative;">
     <div id="modalContent" style="width: 100%;height: 100%;display: flex;flex-direction: column;background-color: #ffffff;font-size: 20px;transition: all 0.5s ease;border-radius: 20px;gap: 10px;opacity: 0;position:relative">
-      <div id="headerWrap" style="background-color: #184997;border-radius: 10px 10px 0 0;color: #fff;padding: 13px 15px;font-family: Georgia;font-size: 18px;">
+      <div id="headerWrap" style="background-color: #265eb9;border-radius: 10px 10px 0 0;color: #fff;padding: 13px 15px;font-family: Georgia;font-size: 18px;">
         Submit a Ticket
       </div>
       <form id="formElem" style="display: flex;flex-direction: column;flex-grow: 1;gap: 10px;margin:0px;padding:0px;">
         <div id="ticketWrap" style="padding: 5px 20px 5px 20px;display: flex;flex-direction: column;gap: 10px;">
           <div class="borderParent dropMargin" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
-            <div id="dropWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 15px;position: relative;">
+            <div id="dropWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 15px 8px 10px;position: relative;">
               <div id="drop" style="background-color: #ffffff;color: black;border-radius: 5px;font-size: 14px;display: flex;flex-direction: column;gap: 4px;">
                 <span class="headerInput helv" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Submission Type</span>
                 <span id="submissionType" class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>Accidental Submission/Other</span>
@@ -51,22 +51,13 @@ import {
           </div>
 
           <div id="overflowParent" class="customScroll" style="width: 100%;flex-grow: 1;display: flex;padding-right: 8px;flex-direction: column;overflow-y: scroll;gap: 10px;height: 315px;margin:0px;padding-bottom: 5px;">
-            <div id="boardWrap" style="display: flex;width: 100%;gap: 10px;margin:0px;">
-              <div class="borderParent radioOpt" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;flex-grow: 1;margin:0px;">
-                <input type="radio" name="boardType" id="sbddm" value="SB DDM" checked style="opacity: 0;position: absolute;" />
-                <label for="sbddm" style='display: flex;align-items: center;justify-content: center;width: 100%;'>
-                  <div class="innerBoard helv" style='padding: 10px 0;text-align: center;width: 100%;background-color: #eaf2ff;border-radius: 5px;color: #7e7e7e;font-size: 14px;transition: all 0.3s ease-in-out; font-family: Helvetica, "Times New Roman", Times, serif;margin:0px'>
-                    SB DDM
-                  </div>
-                </label>
-              </div>
-              <div class="borderParent radioOpt" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;flex-grow: 1;">
-                <input type="radio" name="boardType" id="otherOpt" value="Other" style="opacity: 0;position: absolute;" />
-                <label for="otherOpt" style="display: flex;align-items: center;justify-content: center;width: 100%;"> 
-                  <div class="innerBoard helv" style='padding: 10px 0;text-align: center;width: 100%;background-color: #eaf2ff;border-radius: 5px;color: #7e7e7e;font-size: 14px;transition: all 0.3s ease-in-out; font-family: Helvetica, "Times New Roman", Times, serif;margin:0px'>
-                      OTHER
-                  </div>
-                </label>
+            <div class="borderParent dropMargin" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
+              <div id="boardWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 10px;position: relative;">
+                <div id="drop" style="background-color: #ffffff;color: black;border-radius: 5px;font-size: 14px;display: flex;flex-direction: column;gap: 4px;">
+                  <span class="headerInput helv" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Board Type</span>
+                  <span id="boardType" class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>SB Milo Trajector Medical</span>
+                </div>
+                <img src=${blkArr} alt="Down" id="rArr" class="rotateToDown" style="rotate: 90deg;width: 12px;height: 12px;" />
               </div>
             </div>
             
@@ -85,18 +76,18 @@ import {
               </label>
             </div>
 
-            <div class="doubleDiv" style="display: flex;justify-content: space-between;align-items: center;margin:0px;padding:0px">
-              <div class="borderParent" style="width:47%;border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+            <div class="doubleDiv" style="display: flex;gap:10px;justify-content: space-between;align-items: center;margin:0px;padding:0px">
+              <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
                 <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                   <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;padding:0px;margin:0px;'> IP Address </span>
-                  <input type="text" name="IPAdd" id="IPAdd" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;font-size: 14.5px;padding:0px;margin:0px;' value=${ip} style="padding:0px" readonly />
+                  <input type="text" name="IPAdd" id="IPAdd" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;font-size: 14.5px;padding:0px;margin:0px;' value=${ip} style="padding:0px" readonly />
                 </div>
               </div>
 
-              <div class="borderParent" style="width:46%;border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
+              <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
                 <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                   <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Location </span>
-                  <input type="text" name="Locate" id="Locate" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;  font-size: 14.5px; padding:0px;margin:0px;' value=${locRes.geoplugin_countryName} readonly />
+                  <input type="text" name="Locate" id="Locate" class="inputBox helv" style='width:100%;font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;color: #878787;  font-size: 14.5px; padding:0px;margin:0px;' value=${locRes.geoplugin_countryName} readonly />
                 </div>
               </div>
             </div>
@@ -104,7 +95,7 @@ import {
             <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;margin:0px;">
               <div id="descArea" style="display: flex;flex-direction: column;gap: 8px;background-color: #fff;padding: 10px;margin:0px;">
                 <span class="headerInput helv" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'>Description</span>
-                <textarea name="descInp" class="customScroll helv" style='outline: none;border: none;resize: none;padding-right: 5px;background: transparent;font-size: 13px;font-family: Helvetica, "Times New Roman", Times, serif;padding: 0px;margin:0px;' rows="6" placeholder="Enter details here..." id="descInp"></textarea>
+                <textarea name="descInp" class="customScroll helv" style='outline: none;border: none;resize: none;padding-right: 5px;background: transparent;font-size: 14px;font-family: Helvetica, "Times New Roman", Times, serif;padding: 0px;padding-right:13px;margin:0px;' rows="6" placeholder="Enter details here..." id="descInp"></textarea>
               </div>
             </div>
 
@@ -119,8 +110,8 @@ import {
         </div>
 
         <div id="botBtnWrap" style="display: flex;width: 100%;justify-content: space-between;height: 100%;">
-          <button class="botBtn" id="cancelBtn" type="button" style='width: 50%;border: none;background-color: #5d89d0;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 0 10px;padding: 10px 0 10px 30px;display: flex;align-items: center;justify-content: start;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;'> Cancel </button>
-          <button class="botBtn" id="submitBtn" type="submit" style="width: 50%;border: none;background-color: #5d89d0;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 10px 0;padding: 10px 30px 10px 0;display: flex;align-items: center;justify-content: end;gap: 10px;"> 
+          <button class="botBtn" id="cancelBtn" type="button" style='width: 50%;border: none;background-color: #265eb9;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 0 10px;padding: 10px 0 10px 30px;display: flex;align-items: center;justify-content: start;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;'> Cancel </button>
+          <button class="botBtn" id="submitBtn" type="submit" style="width: 50%;border: none;background-color: #265eb9;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 10px 0;padding: 10px 30px 10px 0;display: flex;align-items: center;justify-content: end;gap: 10px;"> 
           <span style='font-family: Helvetica, "Times New Roman", Times, serif;padding:0px;margin:0px;'>Submit</span>
           <img id='rArr' src=${rArrow} alt="Arrow" style="width: 12px;height: 12px;"  /> 
           </button>
@@ -142,7 +133,7 @@ import {
     <span class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>+ Upload Screenshot</span>
   `;
   const dropOptsElem = `
-    <div id="dropOpts" style="position: absolute;top: 90%;opacity: 0;width: 100%;background-color: #fff;left: 0;padding: 10px 0;border: 1px solid #d4d4d4;border-radius: 5px;transition: all 0.3s ease-in-out; z-index:1199;margin:0px;">
+    <div id="dropOpts" style="position: absolute;top: 90%;opacity: 0;width: 100%;background-color: #fff;left: 0;padding: 10px 0;border: 1px solid #d4d4d4;border-radius: 5px;transition: all 0.3s ease-in-out; z-index:1199;margin:0px;box-shadow:0 2px 13px -5px #181818;">
       <span class="headerInput px-10 helv" style='font-size: 12px;color: #979797;padding: 0 10px;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;'>
         Select Submission Type
       </span>
@@ -150,13 +141,27 @@ import {
         <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">Accidental Submission/Other</button>
         <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">Change Request</button>
         <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">Incident</button>
-        <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">Must Change</button>
         <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">Service Request</button>
       </div>
     </div>
   `;
+  const boardDropOpts = `
+  <div id="boardOpts" style="position: absolute;top: 90%;opacity: 0;width: 100%;background-color: #fff;left: 0;padding: 10px 0;border: 1px solid #d4d4d4;border-radius: 5px;transition: all 0.3s ease-in-out; z-index:1198;margin:0px;box-shadow:0 2px 13px -5px #181818;">
+    <span class="headerInput px-10 helv" style='font-size: 12px;color: #979797;padding: 0 10px;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;'>
+      Select Board Type
+    </span>
+    <div id="optWrap" class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;display: flex;flex-direction: column;margin-top: 5px;'>
+      <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">SB Milo Trajector Medical</button>
+      <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">SB Milo Outreach Legal</button>
+      <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">SB Milo Veteran Help</button>
+      <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">SB Client Profile</button>
+      <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">SB DDM</button>
+      <button type="button" style="border: transparent;background-color: transparent;text-align: start;transition: all 0.3s ease-in-out;padding: 5px 15px;font-size: 14px;border-left: 2px solid transparent;cursor:pointer">SB AI Draft Creator</button>
+    </div>
+  </div>
+`;
   const succToastMSG = `
-  <div class="cdnToastMSG" id="succToasMSG" style="z-index: 900;position: absolute;bottom: 95%;left:0;right:0;padding: 10px 20px;border-radius: 10px;color: #fff;opacity: 0;transition: bottom 0.3s ease-in, opacity 0.3s ease-in; background: #20eb00;">
+  <div class="cdnToastMSG" id="succToasMSG" style="z-index: 900;position: absolute;bottom: 95%;left:0;right:0;padding: 10px 20px;border-radius: 10px;color: #fff;opacity: 0;transition: bottom 0.3s ease-in, opacity 0.3s ease-in; background: #4ae232;">
     <div id="toastMSGWrap" style="display: flex;width: 100%;height: 100%;gap: 15px;align-items: center;">
       <img src=${check} alt="check" class="toastMSGIcon" style="height: 30px;width: 30px;" />
       <div id="toastTexts945" style="display: flex;flex-direction: column;gap: 4px;">
@@ -167,7 +172,7 @@ import {
   </div>
   `;
   const errToastMSG = `
-  <div class="cdnToastMSG" id="errToasMSG" style="z-index: 900;position: absolute;bottom: 95%;left:0;right:0;padding: 10px 20px;border-radius: 10px;color: #fff;opacity: 0;transition: bottom 0.3s ease-in, opacity 0.3s ease-in;background-color: #f10000;">
+  <div class="cdnToastMSG" id="errToasMSG" style="z-index: 900;position: absolute;bottom: 95%;left:0;right:0;padding: 10px 20px;border-radius: 10px;color: #fff;opacity: 0;transition: bottom 0.3s ease-in, opacity 0.3s ease-in;background-color: #ff5454;">
     <div id="toastMSGWrap" style="display: flex;width: 100%;height: 100%;gap: 15px;align-items: center;">
       <img src=${close} alt="close" class="toastMSGIcon" style="height: 30px;width: 30px;" />
       <div id="toastTexts945" style="display: flex;flex-direction: column;gap: 4px;">
@@ -244,6 +249,8 @@ import {
 
       // Dropdown functions
       const dropWrap = document.getElementById("dropWrap");
+      const boardWrap = document.getElementById("boardWrap");
+      // Submission Type Dropdown
       dropWrap.addEventListener("click", () => {
         let dropOpts = document.getElementById("dropOpts");
         if (dropOpts) {
@@ -266,8 +273,8 @@ import {
 
           for (let btn of options) {
             btn.addEventListener("mouseover", () => {
-              btn.style.backgroundColor = "#a1c3fa";
-              btn.style.color = "#fff";
+              btn.style.backgroundColor = "#dae8ff";
+              // btn.style.color = "#fff";
               btn.style.borderLeft = "2px solid #184997";
             });
             btn.addEventListener("mouseout", () => {
@@ -277,6 +284,44 @@ import {
             });
             btn.addEventListener("click", () => {
               subType.textContent = btn.textContent;
+            });
+          }
+        }
+      });
+      // Board Type Dropdown
+      boardWrap.addEventListener("click", () => {
+        let boardOpts = document.getElementById("boardOpts");
+        if (boardOpts) {
+          // close the dropdown
+          boardOpts.style.top = "90%";
+          boardOpts.style.opacity = "0";
+          setTimeout(() => {
+            boardOpts.remove();
+          }, 200);
+        } else {
+          // show dropdown options
+          boardWrap.insertAdjacentHTML("beforeend", boardDropOpts);
+          boardOpts = document.getElementById("boardOpts");
+          setTimeout(() => {
+            boardOpts.style.top = "120%";
+            boardOpts.style.opacity = "1";
+          }, 200);
+          const option = boardWrap.getElementsByTagName("button");
+          const boardType = document.getElementById("boardType");
+          // Options Hover and Click Logic
+          for (let btn of option) {
+            btn.addEventListener("mouseover", () => {
+              btn.style.backgroundColor = "#dae8ff";
+              // btn.style.color = "#FFF";
+              btn.style.borderLeft = "2px solid #184997";
+            });
+            btn.addEventListener("mouseout", () => {
+              btn.style.backgroundColor = "transparent";
+              btn.style.color = "#000";
+              btn.style.borderLeft = " 2px solid transparent";
+            });
+            btn.addEventListener("click", () => {
+              boardType.textContent = btn.textContent;
             });
           }
         }
@@ -292,7 +337,7 @@ import {
         cancelBtn.style.backgroundColor = "#f36974";
       });
       cancelBtn.addEventListener("mouseout", () => {
-        cancelBtn.style.backgroundColor = "#5d89d0";
+        cancelBtn.style.backgroundColor = "#265eb9";
       });
 
       cancelBtn.addEventListener("click", () => {
@@ -315,36 +360,36 @@ import {
       const submitBtn = document.getElementById("submitBtn");
 
       submitBtn.addEventListener("mouseover", () => {
-        submitBtn.style.backgroundColor = "#719fe8";
+        submitBtn.style.backgroundColor = "#5d89d0";
       });
       submitBtn.addEventListener("mouseout", () => {
-        submitBtn.style.backgroundColor = "#5d89d0";
+        submitBtn.style.backgroundColor = "#265eb9";
       });
 
       // Radio Effects
-      const radLabel = document.querySelector(
-        "input[type='radio']:checked + label .innerBoard"
-      );
-      radLabel.style.backgroundColor = "#f0616c";
-      radLabel.style.color = "#fff";
-      // Changing of Color on selected Radio BTN
-      const radios = document.querySelectorAll("input[type='radio']");
-      for (let rad of radios) {
-        rad.addEventListener("click", () => {
-          const allLbl = document.querySelectorAll(
-            "input[type='radio'] + label .innerBoard"
-          );
-          for (let lbl of allLbl) {
-            lbl.style.backgroundColor = "#eaf2ff";
-            lbl.style.color = "#7e7e7e";
-          }
-          const radLabel = document.querySelectorAll(
-            "input[type='radio']:checked + label .innerBoard"
-          );
-          radLabel[0].style.backgroundColor = "#f0616c";
-          radLabel[0].style.color = "#fff";
-        });
-      }
+      // const radLabel = document.querySelector(
+      //   "input[type='radio']:checked + label .innerBoard"
+      // );
+      // radLabel.style.backgroundColor = "#f0616c";
+      // radLabel.style.color = "#fff";
+      // // Changing of Color on selected Radio BTN
+      // const radios = document.querySelectorAll("input[type='radio']");
+      // for (let rad of radios) {
+      //   rad.addEventListener("click", () => {
+      //     const allLbl = document.querySelectorAll(
+      //       "input[type='radio'] + label .innerBoard"
+      //     );
+      //     for (let lbl of allLbl) {
+      //       lbl.style.backgroundColor = "#eaf2ff";
+      //       lbl.style.color = "#7e7e7e";
+      //     }
+      //     const radLabel = document.querySelectorAll(
+      //       "input[type='radio']:checked + label .innerBoard"
+      //     );
+      //     radLabel[0].style.backgroundColor = "#f0616c";
+      //     radLabel[0].style.color = "#fff";
+      //   });
+      // }
     }, 300);
 
     // Submitting Form
@@ -356,32 +401,23 @@ import {
         ev.preventDefault();
         const data = new FormData(ev.target);
         const subType = document.getElementById("submissionType");
+        const board = document.getElementById("boardType");
 
         // Disable submit button while processing
         const submitBtn = document.getElementById("submitBtn");
         submitBtn.disabled = true;
 
-        const [boardType, subName, ssImg, ipAdd, locate, descr, currUrl] = [
+        const [subName, ssImg, ipAdd, locate, descr, currUrl] = [
           ...data.entries(),
         ];
-        console.log([...data.entries()]);
-        console.log(boardType, subName, descr, currUrl, subType.textContent);
+        console.log([
+          subType.textContent,
+          board.textContent,
+          ...data.entries(),
+        ]);
+        console.log(subName, descr, currUrl, subType.textContent);
 
         const [nameBool, descBool] = [subName[1] === "", descr[1] === ""];
-
-        // Turn Images to base64
-        console.log(ssImg[1].type);
-        if (ssImg[1].type === "application/octet-stream") {
-          console.log("DataURI:", ss64);
-        } else {
-          const FR = new FileReader();
-
-          FR.addEventListener("load", () => {
-            ss64 = FR.result;
-          });
-
-          FR.readAsDataURL(ssImg[1]);
-        }
 
         // IF incomplete fields
         if (nameBool || descBool) {
@@ -406,6 +442,20 @@ import {
 
           submitBtn.disabled = false;
           return;
+        }
+
+        // Turn Images to base64
+        console.log(ssImg[1].type);
+        if (ssImg[1].type === "application/octet-stream") {
+          // console.log("DataURI:", ss64);
+        } else {
+          const FR = new FileReader();
+
+          FR.addEventListener("load", () => {
+            ss64 = FR.result;
+          });
+
+          FR.readAsDataURL(ssImg[1]);
         }
 
         // Success Toast Message
@@ -440,7 +490,7 @@ import {
             body: JSON.stringify({
               summary: subName[1].trim(),
               board: {
-                name: boardType[1].trim(),
+                name: board.textContent.trim(),
               },
               company: {
                 id: 19299,
@@ -466,7 +516,11 @@ import {
             },
             body: JSON.stringify({
               id: id.id,
-              text: `Current URL: ${currUrl[1]} \nDescription:${descr[1]} \nIP Address:${ipAdd[1]} \nLocation:${locate[1]}`,
+              text: `Current URL: ${
+                currUrl[1]
+              } \nDescription:${descr[1].trim()} \nIP Address:${
+                ipAdd[1]
+              } \nLocation:${locate[1]}`,
               detailDescriptionFlag: true,
               member: { id: 157 },
             }),
