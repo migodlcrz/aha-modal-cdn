@@ -528,78 +528,78 @@ import {
         console.log("pumasok");
 
         // Create Ticket Endpoint
-        // const createRes = await fetch(
-        //   "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/createTicket",
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-        //       "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-        //     },
-        //     body: JSON.stringify({
-        //       summary: subName[1].trim(),
-        //       board: {
-        //         name: board.textContent.trim(),
-        //       },
-        //       company: {
-        //         id: 19299,
-        //       },
-        //       type: {
-        //         name: subType.textContent.trim(),
-        //       },
-        //     }),
-        //   }
-        // );
-        // const id = await createRes.json();
-        // console.log(id);
+        const createRes = await fetch(
+          "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/createTicket",
+          {
+            method: "POST",
+            headers: {
+              auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+              "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+            },
+            body: JSON.stringify({
+              summary: subName[1].trim(),
+              board: {
+                name: board.textContent.trim(),
+              },
+              company: {
+                id: 19299,
+              },
+              type: {
+                name: subType.textContent.trim(),
+              },
+            }),
+          }
+        );
+        const id = await createRes.json();
+        console.log(id);
 
-        // // Put Ticket Details
-        // const putRes = await fetch(
-        //   "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/putDetails",
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       // "Content-Type": "application/json",
-        //       auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-        //       "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-        //     },
-        //     body: JSON.stringify({
-        //       id: id.id,
-        //       text: `Current URL: ${
-        //         currUrl[1]
-        //       } \nDescription:${descr[1].trim()} \nIP Address:${
-        //         ipAdd[1]
-        //       } \nLocation:${
-        //         locate[1]
-        //       } \nCurrent User:${currUser.textContent.trim()}`,
-        //       detailDescriptionFlag: true,
-        //       member: { id: 157 },
-        //     }),
-        //   }
-        // );
-        // const jason = await putRes.json();
-        // console.log(jason);
+        // Put Ticket Details
+        const putRes = await fetch(
+          "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/putDetails",
+          {
+            method: "POST",
+            headers: {
+              // "Content-Type": "application/json",
+              auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+              "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+            },
+            body: JSON.stringify({
+              id: id.id,
+              text: `Current URL: ${
+                currUrl[1]
+              } \nDescription:${descr[1].trim()} \nIP Address:${
+                ipAdd[1]
+              } \nLocation:${
+                locate[1]
+              } \nCurrent User:${currUser.textContent.trim()}`,
+              detailDescriptionFlag: true,
+              member: { id: 157 },
+            }),
+          }
+        );
+        const jason = await putRes.json();
+        console.log(jason);
 
-        // // Upload Screenshot
-        // const uplRes = await fetch(
-        //   "https://cdn-connectwise.srilan-catalinio.workers.dev/uploadDocument",
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       Authorization:
-        //         "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-        //       clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-        //     },
-        //     body: JSON.stringify({
-        //       title: subName[1],
-        //       id: id.id,
-        //       file: ss64,
-        //     }),
-        //   }
-        // );
+        // Upload Screenshot
+        const uplRes = await fetch(
+          "https://cdn-connectwise.srilan-catalinio.workers.dev/uploadDocument",
+          {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+              clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+            },
+            body: JSON.stringify({
+              title: subName[1],
+              id: id.id,
+              file: ss64,
+            }),
+          }
+        );
 
-        // const respo = await uplRes.json();
-        // console.log("upload Response", respo);
+        const respo = await uplRes.json();
+        console.log("upload Response", respo);
 
         // Reset Values
         const subNameInp = document.getElementById("subName");
