@@ -133,9 +133,9 @@ import {
 
         </div>
 
-        <div id="botBtnWrap" style="display: flex;width: 100%;justify-content: space-between;height: 100%;">
-          <button class="botBtn" id="cancelBtn" type="button" style='width: 50%;border: none;background-color: #265eb9;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 0 10px;padding: 10px 0 10px 30px;display: flex;align-items: center;justify-content: start;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;'> Cancel </button>
-          <button class="botBtn" id="submitBtn" type="submit" style="width: 50%;border: none;background-color: #265eb9;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 10px 0;padding: 10px 30px 10px 0;display: flex;align-items: center;justify-content: end;gap: 10px;"> 
+        <div id="botBtnWrap" style="display: flex;width: 100%;justify-content: space-between;flex-grow:1;">
+          <button class="botBtn" id="cancelBtn" type="button" style='width: 50%;border: none;background-color: #265eb9;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 0 10px;padding-left: 30px;display: flex;align-items: center;justify-content: start;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;'> Cancel </button>
+          <button class="botBtn" id="submitBtn" type="submit" style="width: 50%;border: none;background-color: #265eb9;color: white;cursor: pointer;font-size: 13px; border-radius: 0 0 10px 0;padding-right: 30px;display: flex;align-items: center;justify-content: end;gap: 10px;"> 
           <span style='font-family: Helvetica, "Times New Roman", Times, serif;padding:0px;margin:0px;'>Submit</span>
           <img id='rArr' src=${rArrow} alt="Arrow" style="width: 12px;height: 12px;"  /> 
           </button>
@@ -207,23 +207,23 @@ import {
     </div>
   </div>
   `;
-  const errToastMSG = `
+  const errToastMSG = (err) => `
   <div class="cdnToastMSG" id="errToasMSG" style="z-index: 900;position: absolute;bottom: 95%;left:0;right:0;padding: 10px 20px;border-radius: 10px;color: #fff;opacity: 0;transition: bottom 0.3s ease-in, opacity 0.3s ease-in;background-color: #ff5454;">
     <div id="toastMSGWrap" style="display: flex;width: 100%;height: 100%;gap: 15px;align-items: center;">
       <img src=${close} alt="close" class="toastMSGIcon" style="height: 30px;width: 30px;" />
       <div id="toastTexts945" style="display: flex;flex-direction: column;gap: 4px;">
         <span class="toastHeader34 frank" style="font-size: 14px;font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;>ERROR</span>
-        <span class="toastCont495 helv" style='font-size: 16px;font-family: Helvetica, "Times New Roman", Times, serif;'>Please Fill Out Incomplete Fields</span>
+        <span class="toastCont495 helv" style='font-size: 16px;font-family: Helvetica, "Times New Roman", Times, serif;'>${err}</span>
       </div>
     </div>
   </div>
   `;
   const overlayLoad = `
-  <div id="t_loadingOverlay" style="position: absolute;inset: 0;background: #e2e2e266;z-index: 10;border-radius: 10px;cursor: wait;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;transition: all 0.4s linear;opacity:0;"> 
-    <div style="padding: 15px;background: #818181;border-radius: 10px;display: flex;">
-      <img src=${processIcon} alt="process icon" class="toastMSGIcon" style="height: 30px;width: 30px;" /> 
+  <div id="t_loadingOverlay" style="position: absolute;inset: 0;background: #e2e2e266;z-index: 10;border-radius: 10px;cursor: wait;display:flex;align-items:center;justify-content:center;transition: all 0.4s linear;opacity:0;"> 
+    <div style="padding: 15px 15px 10px 15px;background: #818181;border-radius: 10px;display: flex;flex-direction: column;align-items: center;justify-content: center;gap: 10px;">
+      <img src=${processIcon} alt="process icon" class="toastMSGIcon" style="height: 40px;width: 40px;" /> 
+      <span style='font-family: Helvetica, "Times New Roman", Times, serif;font-size: 14px;color: #e4e4e4;'>Processing</span>
     </div>
-    <span style='font-family: Helvetica, "Times New Roman", Times, serif;font-size: 17px;color: #626262;'>Processing</span>
   </div>
   `;
   document.body.insertAdjacentHTML("beforeend", wholeModal);
@@ -495,7 +495,10 @@ import {
           // Add Error toast message
           console.log("ERROR");
           const modalContent = document.getElementById("modalContent");
-          modalContent.insertAdjacentHTML("beforeend", errToastMSG);
+          modalContent.insertAdjacentHTML(
+            "beforeend",
+            errToastMSG("Please Fill Out Incomplete Fields")
+          );
 
           setTimeout(() => {
             const toastMSG = document.getElementById("errToasMSG");
@@ -515,30 +518,13 @@ import {
           return;
         }
 
-        // Show processing Toast MSG
+        // Show the processing overlay
         const modalContent = document.getElementById("modalContent");
-        modalContent.insertAdjacentHTML("beforeend", waitToastMSG);
-
-        setTimeout(() => {
-          const toastMSG = document.getElementById("waitToastMSG");
-          toastMSG.style.bottom = "103%";
-          toastMSG.style.opacity = "1";
-        }, 200);
-
-        // Put the processing overflow
         modalContent.insertAdjacentHTML("afterbegin", overlayLoad);
         setTimeout(() => {
           const overlay = document.getElementById("t_loadingOverlay");
           overlay.style.opacity = "1";
         }, 100);
-
-        // Disable submit and cancel button while processing
-        // const submitBtn = document.getElementById("submitBtn");
-        // const canBtn = document.getElementById("cancelBtn");
-        // submitBtn.style.cursor = "wait";
-        // canBtn.style.cursor = "wait";
-        // submitBtn.disabled = true;
-        // canBtn.disabled = true;
 
         // Turn Images to base64
         console.log(ssImg[1].type);
@@ -554,117 +540,128 @@ import {
           FR.readAsDataURL(ssImg[1]);
         }
 
-        // Create Ticket Endpoint
-        const createRes = await fetch(
-          "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/createTicket",
-          {
-            method: "POST",
-            headers: {
-              auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-              "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-            },
-            body: JSON.stringify({
-              summary: subName[1].trim(),
-              board: {
-                name: board.textContent.trim(),
+        try {
+          // Create Ticket Endpoint
+          const createRes = await fetch(
+            "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/createTicket",
+            {
+              method: "POST",
+              headers: {
+                auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+                "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
               },
-              company: {
-                id: 19299,
+              body: JSON.stringify({
+                summary: subName[1].trim(),
+                board: {
+                  name: board.textContent.trim(),
+                },
+                company: {
+                  id: 19299,
+                },
+                type: {
+                  name: subType.textContent.trim(),
+                },
+              }),
+            }
+          );
+          const id = await createRes.json();
+          console.log(id);
+
+          // Put Ticket Details
+          const putRes = await fetch(
+            "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/putDetails",
+            {
+              method: "POST",
+              headers: {
+                // "Content-Type": "application/json",
+                auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+                "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
               },
-              type: {
-                name: subType.textContent.trim(),
+              body: JSON.stringify({
+                id: id.id,
+                text: `Current URL: ${
+                  currUrl[1]
+                } \nDescription:${descr[1].trim()} \nIP Address:${
+                  ipAdd[1]
+                } \nLocation:${
+                  locate[1]
+                } \nCurrent User:${currUser.textContent.trim()}`,
+                detailDescriptionFlag: true,
+                member: { id: 157 },
+              }),
+            }
+          );
+          const jason = await putRes.json();
+          console.log(jason);
+
+          // Upload Screenshot
+          const uplRes = await fetch(
+            "https://cdn-connectwise.srilan-catalinio.workers.dev/uploadDocument",
+            {
+              method: "POST",
+              headers: {
+                Authorization:
+                  "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+                clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
               },
-            }),
-          }
-        );
-        const id = await createRes.json();
-        console.log(id);
+              body: JSON.stringify({
+                title: subName[1],
+                id: id.id,
+                file: ss64,
+              }),
+            }
+          );
 
-        // Put Ticket Details
-        const putRes = await fetch(
-          "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/putDetails",
-          {
-            method: "POST",
-            headers: {
-              // "Content-Type": "application/json",
-              auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-              "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-            },
-            body: JSON.stringify({
-              id: id.id,
-              text: `Current URL: ${
-                currUrl[1]
-              } \nDescription:${descr[1].trim()} \nIP Address:${
-                ipAdd[1]
-              } \nLocation:${
-                locate[1]
-              } \nCurrent User:${currUser.textContent.trim()}`,
-              detailDescriptionFlag: true,
-              member: { id: 157 },
-            }),
-          }
-        );
-        const jason = await putRes.json();
-        console.log(jason);
+          const respo = await uplRes.json();
+          console.log("upload Response", respo);
 
-        // Upload Screenshot
-        const uplRes = await fetch(
-          "https://cdn-connectwise.srilan-catalinio.workers.dev/uploadDocument",
-          {
-            method: "POST",
-            headers: {
-              Authorization:
-                "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-              clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
-            },
-            body: JSON.stringify({
-              title: subName[1],
-              id: id.id,
-              file: ss64,
-            }),
-          }
-        );
-
-        const respo = await uplRes.json();
-        console.log("upload Response", respo);
-
-        // Remove "Processing" Toast Message
-        const processMSG = document.getElementById("waitToastMSG");
-        processMSG.style.bottom = "95%";
-        processMSG.style.opacity = "0";
-        setTimeout(() => {
-          processMSG.remove();
-        }, 200);
-
-        // Enable the buttons After Processing
-        // submitBtn.style.cursor = "pointer";
-        // canBtn.style.cursor = "pointer";
-        // submitBtn.disabled = false;
-        // canBtn.disabled = false;
-
-        // Remove Processing Overlay
-        const overlay = document.getElementById("t_loadingOverlay");
-        overlay.style.opacity = "0";
-        setTimeout(() => {
-          overlay.remove();
-        }, 100);
-
-        // Success Toast Message
-        modalContent.insertAdjacentHTML("beforeend", succToastMSG);
-
-        setTimeout(() => {
-          const toastMSG = document.getElementById("succToasMSG");
-          toastMSG.style.bottom = "103%";
-          toastMSG.style.opacity = "1";
+          // Success Toast Message
+          modalContent.insertAdjacentHTML("beforeend", succToastMSG);
 
           setTimeout(() => {
-            toastMSG.style.bottom = "95%";
-            toastMSG.style.opacity = "0";
-          }, 3500);
+            const toastMSG = document.getElementById("succToasMSG");
+            toastMSG.style.bottom = "103%";
+            toastMSG.style.opacity = "1";
+
+            setTimeout(() => {
+              toastMSG.style.bottom = "95%";
+              toastMSG.style.opacity = "0";
+            }, 3500);
+            setTimeout(() => {
+              toastMSG.remove();
+            }, 4000);
+          }, 200);
+        } catch (error) {
+          console.log(error);
+
+          // Show toast message for error
+          const modalContent = document.getElementById("modalContent");
+          modalContent.insertAdjacentHTML(
+            "beforeend",
+            errToastMSG("Something went wrong...")
+          );
+
           setTimeout(() => {
-            toastMSG.remove();
-          }, 4000);
-        }, 200);
+            const toastMSG = document.getElementById("errToasMSG");
+            toastMSG.style.bottom = "103%";
+            toastMSG.style.opacity = "1";
+
+            setTimeout(() => {
+              toastMSG.style.bottom = "95%";
+              toastMSG.style.opacity = "0";
+            }, 3500);
+            setTimeout(() => {
+              toastMSG.remove();
+            }, 4000);
+          }, 200);
+        } finally {
+          // Remove Processing Overlay
+          const overlay = document.getElementById("t_loadingOverlay");
+          overlay.style.opacity = "0";
+          setTimeout(() => {
+            overlay.remove();
+          }, 100);
+        }
 
         // Reset Values
         const subNameInp = document.getElementById("subName");
