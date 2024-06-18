@@ -5,9 +5,15 @@ import {
   connLogo,
   imgPlace,
   rArrow,
+  processIcon,
 } from "../assets/images.js";
 
 (async function () {
+  const user = window.displayName;
+  const site = window.miloSite;
+  console.log("DISPLAY NAME: ", window.displayName);
+  console.log("MILO SITE: ", window.miloSite);
+
   const seedId = () => {
     let id = "id" + Math.random().toString(16).slice(2);
     return id;
@@ -35,12 +41,13 @@ import {
   const modalContentElement = `
   <div id='contentWrapper' style="width: 100%;height: 100%;position: relative;">
     <div id="modalContent" style="width: 100%;height: 100%;display: flex;flex-direction: column;background-color: #ffffff;font-size: 20px;transition: all 0.5s ease;border-radius: 20px;gap: 10px;opacity: 0;position:relative">
+
       <div id="headerWrap" style="background-color: #265eb9;border-radius: 10px 10px 0 0;color: #fff;padding: 13px 15px;font-family: Georgia;font-size: 18px;">
         Submit a Ticket
       </div>
       <form id="formElem" style="display: flex;flex-direction: column;flex-grow: 1;gap: 10px;margin:0px;padding:0px;">
         <div id="ticketWrap" style="padding: 5px 20px 5px 20px;display: flex;flex-direction: column;gap: 10px;">
-          <div class="borderParent dropMargin" id="nameBorder" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
+          <div class="borderParent dropMargin" id="nameBorder" style="border: 1px solid #bebebe;position:relative;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
             <div id="dropWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 15px 8px 10px;position: relative;">
               <div id="drop" style="background-color: #ffffff;color: black;border-radius: 5px;font-size: 14px;display: flex;flex-direction: column;gap: 4px;">
                 <span class="headerInput helv" id="tSubNameHead" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Submission Type</span>
@@ -56,7 +63,7 @@ import {
             
             <div class="borderParent" id="tsubmissionName" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
               <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
-                <span class="headerInput helv" id="tSubmissionNameHeader" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Submission Name </span>
+                <span class="headerInput helv" id="tSubmissionNameHeader" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'> Ticket Name </span>
                 <input type="text" name="subName" id="subName" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;font-size: 15px;padding: 0px;margin:0px;' placeholder="Type here..." autocomplete="off" />
               </div>
             </div>
@@ -67,9 +74,9 @@ import {
                   <image id="imgPlaceholder" src=${imgPlace} style="width: 40px;height: 40px;" />
                   <span class="helv" style='font-family: Helvetica, "Times New Roman", Times, serif;'>+ Upload Screenshot</span>
                 </label>
-              </div>
+            </div>
 
-              <div class="borderParent dropMargin" id="boardBorder" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;">
+            <div class="borderParent dropMargin" id="boardBorder" style="border: 1px solid #bebebe;padding: 3px;position:relative;font-size: 16px;border-radius: 5px;cursor:pointer">
                 <div id="boardWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 10px;position: relative;">
                   <div id="drop" style="background-color: #ffffff;color: black;border-radius: 5px;font-size: 14px;display: flex;flex-direction: column;gap: 4px;">
                     <span class="headerInput helv" id="tBoardHead" style='font-size: 12px;  color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;'>Board Type</span>
@@ -82,7 +89,7 @@ import {
             <div class="borderParent" id="tDescTicField" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;margin:0px;">
               <div id="descArea" style="display: flex;flex-direction: column;gap: 8px;background-color: #fff;padding: 10px;margin:0px;">
                 <span class="headerInput helv" id="t_descHeader" style='font-size: 12px;color: #979797;font-family: Helvetica, "Times New Roman", Times, serif;margin:0px;padding:0px'>Description</span>
-                <textarea name="descInp" class="customScroll helv" id="t_descInp" style='outline: none;border: none;resize: none;padding-right: 5px;background: transparent;font-size: 14px;font-family: Helvetica, "Times New Roman", Times, serif;padding: 0px;padding-right:13px;margin:0px;' rows="6" placeholder="Enter details here..." value="" id="descInp"></textarea>
+                <textarea name="descInp" class="customScroll helv" style='outline: none;border: none;resize: none;padding-right: 5px;background: transparent;font-size: 14px;font-family: Helvetica, "Times New Roman", Times, serif;padding: 0px;padding-right:13px;margin:0px;' rows="6" placeholder="Enter details here..." value="" id="descInp"></textarea>
               </div>
             </div>
 
@@ -104,7 +111,7 @@ import {
               </div>
             </div>
 
-            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: delault;margin:0px;">
+            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;margin:0px;">
               <div class="inpWrap" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 5px;margin:0px;">
                 <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;"> Current URL </span>
                 <input type="text" name="currentURL" id="currentURL" class="inputBox helv" style='font-family: Helvetica, "Times New Roman", Times, serif;border: none;outline: none;cursor:not-allowed;color: #777777;font-size: 14.5px;padding: 0px;outline: none;margin:0px;' value=${
@@ -113,11 +120,11 @@ import {
               </div>
             </div>
 
-            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: delault;margin:0px;">
+            <div class="borderParent" style="border: 1px solid #bebebe;padding: 3px;font-size: 16px;border-radius: 5px;cursor: default;margin:0px;">
               <div class="inpWrap" style="display: flex;flex-direction: row;padding: 8px 10px;align-items:center;gap: 10px;margin:0px;">
                 <span class='headerInput helv' style="font-size: 12px;color: #979797;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;cursor:default;"> Creator </span>
                 <span id="currentUser" style="font-size: 13px;cursor:not-allowed;color: #777777;font-family: Helvetica, 'Times New Roman', Times, serif;padding:0px;margin:0px;">${
-                  displayName ? displayName : "No User"
+                  !!user ? user : "Unknown User"
                 }</span>
               </div>
             </div>
@@ -177,6 +184,18 @@ import {
     </div>
   </div>
 `;
+
+  const waitToastMSG = `
+  <div class="cdnToastMSG" id="waitToastMSG" style="z-index: 900;position: absolute;bottom: 95%;left:0;right:0;padding: 10px 20px;border-radius: 10px;color: #fff;opacity: 0;transition: bottom 0.3s ease-in, opacity 0.3s ease-in; background: #8a8989;">
+    <div id="toastMSGWrap" style="display: flex;width: 100%;height: 100%;gap: 15px;align-items: center;">
+      <img src=${processIcon} alt="process icon" class="toastMSGIcon" style="height: 30px;width: 30px;" />
+      <div id="toastTexts945" style="display: flex;flex-direction: column;gap: 4px;">
+        <span class="toastHeader34 frank" style="font-size: 14px;font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;">PROCESSING</span>
+        <span class="toastCont495 helv" style='font-size: 16px;font-family: Helvetica, "Times New Roman", Times, serif;'>Please Wait...</span>
+      </div>
+    </div>
+  </div>
+  `;
   const succToastMSG = `
   <div class="cdnToastMSG" id="succToasMSG" style="z-index: 900;position: absolute;bottom: 95%;left:0;right:0;padding: 10px 20px;border-radius: 10px;color: #fff;opacity: 0;transition: bottom 0.3s ease-in, opacity 0.3s ease-in; background: #4ae232;">
     <div id="toastMSGWrap" style="display: flex;width: 100%;height: 100%;gap: 15px;align-items: center;">
@@ -199,6 +218,14 @@ import {
     </div>
   </div>
   `;
+  const overlayLoad = `
+  <div id="t_loadingOverlay" style="position: absolute;inset: 0;background: #e2e2e266;z-index: 10;border-radius: 10px;cursor: wait;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;transition: all 0.4s linear;opacity:0;"> 
+    <div style="padding: 15px;background: #818181;border-radius: 10px;display: flex;">
+      <img src=${processIcon} alt="process icon" class="toastMSGIcon" style="height: 30px;width: 30px;" /> 
+    </div>
+    <span style='font-family: Helvetica, "Times New Roman", Times, serif;font-size: 17px;color: #626262;'>Processing</span>
+  </div>
+  `;
   document.body.insertAdjacentHTML("beforeend", wholeModal);
 
   const modal = document.getElementById("supportModal");
@@ -209,8 +236,9 @@ import {
 
   // Function for opening the modal
   const openModal = async () => {
-    console.log("DISPLAY NAME: ", displayName);
-    console.log("MILO SITE: ", miloSite);
+    // console.log("DISPLAY NAME: ", displayName);
+    // console.log("MILO SITE: ", miloSite);
+
     // Screenshot
     let ss64 = "";
     const stream = await navigator.mediaDevices.getDisplayMedia({
@@ -262,10 +290,8 @@ import {
       });
 
       // Dropdown functions
-      const dropWrap = document.getElementById("dropWrap");
-      const boardWrap = document.getElementById("boardWrap");
-      const divBorder = document.getElementById("nameBorder");
-      const bordBorder = document.getElementById("boardBorder");
+      const dropWrap = document.getElementById("nameBorder");
+      const boardWrap = document.getElementById("boardBorder");
       const nameHead = document.getElementById("tSubNameHead");
       const bordHead = document.getElementById("tBoardHead");
       const subTypeVal = document.getElementById("submissionType");
@@ -276,7 +302,7 @@ import {
 
         if (dropOpts) {
           // close them
-          divBorder.style.border = "1px solid #bebebe";
+          dropWrap.style.border = "1px solid #bebebe";
           nameHead.style.color = "#979797";
           subTypeVal.style.color = "#000000";
           dropOpts.style.top = "90%";
@@ -286,7 +312,7 @@ import {
           }, 400);
         } else {
           // open the options
-          divBorder.style.border = "1px solid #488eff";
+          dropWrap.style.border = "1px solid #488eff";
           nameHead.style.color = "#488eff";
           subTypeVal.style.color = "#0b4fbe";
           dropWrap.insertAdjacentHTML("beforeend", dropOptsElem);
@@ -320,7 +346,7 @@ import {
         let boardOpts = document.getElementById("boardOpts");
         if (boardOpts) {
           // close the dropdown
-          bordBorder.style.border = "1px solid #bebebe";
+          boardWrap.style.border = "1px solid #bebebe";
           bordHead.style.color = "#979797";
           boardTypeVal.style.color = "#000000";
           boardOpts.style.top = "90%";
@@ -330,7 +356,7 @@ import {
           }, 200);
         } else {
           // show dropdown options
-          bordBorder.style.border = "1px solid #488eff";
+          boardWrap.style.border = "1px solid #488eff";
           boardTypeVal.style.color = "#0b4fbe";
           bordHead.style.color = "#488eff";
           boardWrap.insertAdjacentHTML("beforeend", boardDropOpts);
@@ -370,7 +396,7 @@ import {
           border: document.getElementById("tsubmissionName"),
         },
         {
-          field: document.getElementById("t_descInp"),
+          field: document.getElementById("descInp"),
           header: document.getElementById("t_descHeader"),
           border: document.getElementById("tDescTicField"),
         },
@@ -441,10 +467,6 @@ import {
         const nameField = document.getElementById("tsubmissionName");
         const descField = document.getElementById("tDescTicField");
 
-        // Disable submit button while processing
-        const submitBtn = document.getElementById("submitBtn");
-        submitBtn.disabled = true;
-
         // Restart color of border for error indicator
         nameField.style.border = "1px solid #bebebe";
         descField.style.border = "1px solid #bebebe";
@@ -493,6 +515,31 @@ import {
           return;
         }
 
+        // Show processing Toast MSG
+        const modalContent = document.getElementById("modalContent");
+        modalContent.insertAdjacentHTML("beforeend", waitToastMSG);
+
+        setTimeout(() => {
+          const toastMSG = document.getElementById("waitToastMSG");
+          toastMSG.style.bottom = "103%";
+          toastMSG.style.opacity = "1";
+        }, 200);
+
+        // Put the processing overflow
+        modalContent.insertAdjacentHTML("afterbegin", overlayLoad);
+        setTimeout(() => {
+          const overlay = document.getElementById("t_loadingOverlay");
+          overlay.style.opacity = "1";
+        }, 100);
+
+        // Disable submit and cancel button while processing
+        // const submitBtn = document.getElementById("submitBtn");
+        // const canBtn = document.getElementById("cancelBtn");
+        // submitBtn.style.cursor = "wait";
+        // canBtn.style.cursor = "wait";
+        // submitBtn.disabled = true;
+        // canBtn.disabled = true;
+
         // Turn Images to base64
         console.log(ssImg[1].type);
         if (ssImg[1].type === "application/octet-stream") {
@@ -506,26 +553,6 @@ import {
 
           FR.readAsDataURL(ssImg[1]);
         }
-
-        // Success Toast Message
-        const modalContent = document.getElementById("modalContent");
-        modalContent.insertAdjacentHTML("beforeend", succToastMSG);
-
-        setTimeout(() => {
-          const toastMSG = document.getElementById("succToasMSG");
-          toastMSG.style.bottom = "103%";
-          toastMSG.style.opacity = "1";
-
-          setTimeout(() => {
-            toastMSG.style.bottom = "95%";
-            toastMSG.style.opacity = "0";
-          }, 3500);
-          setTimeout(() => {
-            toastMSG.remove();
-          }, 4000);
-        }, 200);
-
-        console.log("pumasok");
 
         // Create Ticket Endpoint
         const createRes = await fetch(
@@ -600,6 +627,44 @@ import {
 
         const respo = await uplRes.json();
         console.log("upload Response", respo);
+
+        // Remove "Processing" Toast Message
+        const processMSG = document.getElementById("waitToastMSG");
+        processMSG.style.bottom = "95%";
+        processMSG.style.opacity = "0";
+        setTimeout(() => {
+          processMSG.remove();
+        }, 200);
+
+        // Enable the buttons After Processing
+        // submitBtn.style.cursor = "pointer";
+        // canBtn.style.cursor = "pointer";
+        // submitBtn.disabled = false;
+        // canBtn.disabled = false;
+
+        // Remove Processing Overlay
+        const overlay = document.getElementById("t_loadingOverlay");
+        overlay.style.opacity = "0";
+        setTimeout(() => {
+          overlay.remove();
+        }, 100);
+
+        // Success Toast Message
+        modalContent.insertAdjacentHTML("beforeend", succToastMSG);
+
+        setTimeout(() => {
+          const toastMSG = document.getElementById("succToasMSG");
+          toastMSG.style.bottom = "103%";
+          toastMSG.style.opacity = "1";
+
+          setTimeout(() => {
+            toastMSG.style.bottom = "95%";
+            toastMSG.style.opacity = "0";
+          }, 3500);
+          setTimeout(() => {
+            toastMSG.remove();
+          }, 4000);
+        }, 200);
 
         // Reset Values
         const subNameInp = document.getElementById("subName");
