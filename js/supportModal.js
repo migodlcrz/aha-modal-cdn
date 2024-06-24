@@ -7,12 +7,15 @@ import {
   rArrow,
   processIcon,
 } from "../assets/images.js";
+import link from "./links.js";
 
 (async function () {
   const user = window.displayName;
   const site = window.miloSite;
-  console.log("DISPLAY NAME: ", window.displayName);
-  console.log("MILO SITE: ", window.miloSite);
+  // console.log("DISPLAY NAME: ", window.displayName);
+  // console.log("MILO SITE: ", window.miloSite);
+
+  // console.log("links", link);
 
   const seedId = () => {
     let id = "id" + Math.random().toString(16).slice(2);
@@ -45,7 +48,7 @@ import {
       <div id="headerWrap" style="background-color: #265eb9;border-radius: 10px 10px 0 0;color: #fff;padding: 13px 15px;font-family: Georgia;font-size: 18px;">
         Submit a Ticket
       </div>
-      <form id="formElem" style="display: flex;flex-direction: column;flex-grow: 1;gap: 10px;margin:0px;padding:0px;">
+      <form id="formElem" style="display: flex;flex-direction: column;flex-grow: 1;gap: 5px;margin:0px;padding:0px;">
         <div id="ticketWrap" style="padding: 5px 20px 5px 20px;display: flex;flex-direction: column;gap: 10px;">
           <div class="borderParent dropMargin" id="nameBorder" style="border: 1px solid #bebebe;position:relative;padding: 3px;font-size: 16px;border-radius: 5px;cursor: pointer;">
             <div id="dropWrap" style="display: flex;align-items: center; justify-content: space-between;padding: 8px 15px 8px 10px;position: relative;">
@@ -57,7 +60,7 @@ import {
             </div>
           </div>
 
-          <div id="overflowParent" class="customScroll" style="width: 100%;flex-grow: 1;display: flex;padding-right: 8px;flex-direction: column;overflow-y: scroll;gap: 10px;height: 315px;margin:0px;padding-bottom: 5px;">
+          <div id="overflowParent" class="customScroll" style="width: 100%;flex-grow: 1;display: flex;padding-right: 8px;flex-direction: column;overflow-y: scroll;gap: 10px;height: 310px;margin:0px;padding-bottom: 5px;">
 
 
             
@@ -474,16 +477,19 @@ import {
         const [subName, ssImg, descr, ipAdd, locate, currUrl] = [
           ...data.entries(),
         ];
-        console.log([
-          currUser.textContent,
-          subType.textContent,
-          board.textContent,
-          ...data.entries(),
-        ]);
-        console.log(subName, descr, currUrl, subType.textContent);
+        // console.log([
+        //   currUser.textContent,
+        //   subType.textContent,
+        //   board.textContent,
+        //   ...data.entries(),
+        // ]);
+        // console.log(subName, descr, currUrl, subType.textContent);
 
-        const [nameBool, descBool] = [subName[1] === "", descr[1] === ""];
-        console.log(nameBool, descBool, descr, typeof descr[1]);
+        const [nameBool, descBool] = [
+          subName[1].trim() === "",
+          descr[1].trim() === "",
+        ];
+        // console.log(nameBool, descBool, descr, typeof descr[1]);
         // IF incomplete fields
         if (nameBool || descBool) {
           if (nameBool) {
@@ -527,7 +533,7 @@ import {
         }, 100);
 
         // Turn Images to base64
-        console.log(ssImg[1].type);
+        // console.log(ssImg[1].type);
         if (ssImg[1].type === "application/octet-stream") {
           // console.log("DataURI:", ss64);
         } else {
@@ -543,15 +549,16 @@ import {
         try {
           // Create Ticket Endpoint
           const createRes = await fetch(
-            "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/createTicket",
+            "https://cdn-connectwise.srilan-catalinio.workers.dev/createTicket",
             {
               method: "POST",
               headers: {
-                auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-                "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+                Authorization:
+                  "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
+                clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
               },
               body: JSON.stringify({
-                summary: subName[1].trim(),
+                summary: `${board.textContent.trim()} ${subType.textContent.trim()}: ${subName[1].trim()}`,
                 board: {
                   name: board.textContent.trim(),
                 },
@@ -565,20 +572,20 @@ import {
             }
           );
           const id = await createRes.json();
-          console.log(id);
+          // console.log(id);
 
           // Put Ticket Details
           const putRes = await fetch(
-            "https://c58q0q4s4a.execute-api.us-east-1.amazonaws.com/putDetails",
+            "https://cdn-connectwise.srilan-catalinio.workers.dev/putDetails",
             {
               method: "POST",
               headers: {
                 // "Content-Type": "application/json",
-                auth: "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-                "client-id": "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+                Authorization: `Basic ${link.AUTHORIZATION}`,
+                clientId: link.CLIENT_ID,
               },
               body: JSON.stringify({
-                id: id.id,
+                id: id,
                 text: `Current URL: ${
                   currUrl[1]
                 } \nDescription:${descr[1].trim()} \nIP Address:${
@@ -592,7 +599,7 @@ import {
             }
           );
           const jason = await putRes.json();
-          console.log(jason);
+          // console.log(jason);
 
           // Upload Screenshot
           const uplRes = await fetch(
@@ -600,20 +607,19 @@ import {
             {
               method: "POST",
               headers: {
-                Authorization:
-                  "Basic YW5jaG9yc2l4X2NzMStMVTh4Z3dmRkxKaEZkUFVEOmdaTlN0N1M5Vm04MW9mRjE=",
-                clientId: "dda341d3-f8bc-4fc1-9b99-e6721e35bae7",
+                Authorization: `Basic ${link.AUTHORIZATION}`,
+                clientId: link.CLIENT_ID,
               },
               body: JSON.stringify({
                 title: subName[1],
-                id: id.id,
+                id: id,
                 file: ss64,
               }),
             }
           );
 
           const respo = await uplRes.json();
-          console.log("upload Response", respo);
+          // console.log("upload Response", respo);
 
           // Success Toast Message
           modalContent.insertAdjacentHTML("beforeend", succToastMSG);
